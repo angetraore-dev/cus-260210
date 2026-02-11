@@ -1,0 +1,20 @@
+{
+  "name": "cus-260210",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "watch": "tailwindcss -i assets/styles/app.css -o var/tailwind/app.css --watch",
+    "build": "tailwindcss -i assets/styles/app.css -o var/tailwind/app.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
+}

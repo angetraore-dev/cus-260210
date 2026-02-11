@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* On force le scan des fichiers Twig pour Tailwind 4 */
+@source "../../templates/**/*.twig";
+
+/*
+body {
+    background-color: skyblue;
+}
+*/

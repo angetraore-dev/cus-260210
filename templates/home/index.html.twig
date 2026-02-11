@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="h-screen bg-slate-900 flex flex-col items-center justify-center text-white">
+        <h1 class="text-5xl font-bold text-sky-400 mb-4">Bravo !</h1>
+        <p class="text-xl">Si le fond est sombre et ce texte est bleu, Tailwind fonctionne.</p>
+        
+        <div data-controller="hello" class="mt-8">
+            <button data-action="click->hello#greet" class="bg-sky-500 px-6 py-2 rounded-full font-bold">
+                Tester Stimulus
+            </button>
+            <p data-hello-target="output" class="mt-4 text-yellow-400 font-mono"></p>
+        </div>
+    </div>
+{% endblock %}
