@@ -1,10 +1,9 @@
-
 ###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
-/.env.dist.local
-/.env.tests
+.env.local
+.env.local.php
+.env.*.local
+.env.dist.local
+.env.tests
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/

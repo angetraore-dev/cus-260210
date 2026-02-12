@@ -22,6 +22,32 @@
 
 @layer components {
 
+
+    /* --- OPTION A : NAVBAR ACTIVE STATE --- */
+    .active-link {
+        @apply text-dark-rose underline decoration-1 underline-offset-8;
+    }
+
+    /* --- OPTION B : LE BOUTON XD STYLE --- */
+    .btn-aurea {
+        /* État de base : rectangle fin en Light Rose */
+        @apply inline-block px-10 py-4 border border-light-rose text-light-rose font-sans transition-all duration-500 ease-in-out;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .btn-aurea:hover {
+        /* Effet d'agrandissement : le scale simule l'élargissement du rectangle */
+        @apply text-dark-rose border-dark-rose scale-110;
+        /* On accentue l'effet XD avec un espacement des lettres et une ombre portée douce */
+        letter-spacing: 3px;
+        box-shadow: 0 0 25px rgba(220, 151, 142, 0.2);
+        text-decoration: underline;
+        text-underline-offset: 8px;
+    }
+    
+
     .bg-hero-pattern {
         /* Symfony comprend le chemin relatif vers assets/images/ */
         background-image: url('../images/hero_bg.svg');

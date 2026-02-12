@@ -47,3 +47,35 @@
     </div> #}
 
 </section>
+
+
+
+
+
+
+
+
+
+
+
+{# Overlay optionnel pour l'opacité (puisqu'on ne peut pas régler l'opacité du bg-image directement en CSS facilement) #}
+    <div class="absolute inset-0 bg-rich-green/80 z-0"></div>
+
+    {# La Row avec tes 3 colonnes (Images + Logo) #}
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 flex justify-between items-center">
+        
+        {# Image Gauche #}
+        <div class="hidden md:block w-1/4 aspect-[3/4] overflow-hidden rounded-sm shadow-2xl">
+            <img src="{{ asset('images/hero-left.jpg') }}" class="w-full h-full object-cover">
+        </div>
+
+        {# Logo Centre #}
+        <div class="flex-1 text-center px-4 animate-fade-in">
+            <h1 class="text-light-rose text-5xl md:text-8xl">AUREA</h1>
+            <p class="font-sans text-[20px] text-light-rose/80 italic">Aurea Collection</p>
+        </div>
+
+        {# Image Droite #}
+        <div class="hidden md:block w-1/4 aspect-[3/4] overflow-hidden rounded-sm shadow-2xl">
+            <img src="{{ asset('images/hero-right.jpg') }}" class="w-full h-full object-cover">
+        </div>

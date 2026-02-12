@@ -14,38 +14,107 @@
 
 
         {# Section HERO avec le background en classe CSS  bg-hero-pattern #}
-<section id="home" class="relative min-h-screen bg-rich-green overflow-hidden">
+        
+        <section id="home" class="relative min-h-screen bg-rich-green overflow-hidden">
+                {# bg #}
+                <div class="absolute inset-0 bg-rich-green" 
+                     style="background-image: url('{{ asset('images/hero_bg.svg') }}'); background-size: cover;">
+                </div>
+            
 
-<div class="absolute inset-0 bg-rich-green" 
-     style="background-image: url('{{ asset('images/hero_bg.svg') }}'); background-size: cover;">
+                {# La Row avec tes 3 colonnes (Images + Logo) #}
+                <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 flex justify-between items-center">
+                    
+                    {# Image Gauche #}
+                        <div class="w-1/4 aspect-[3/4] overflow-hidden rounded-sm shadow-2xl">
+                            <img src="{{ asset('images/hero-left.jpg') }}" class="w-full h-full object-cover">
+                        </div>
+
+
+                    {# Logo Centre 
+                        <div class="flex-1 text-center px-4 animate-fade-in">
+                            <h1 class="text-light-rose text-5xl md:text-8xl">AUREA</h1>
+                            <p class="font-sans text-[20px] text-light-rose/80 italic">Aurea Collection</p>
+                        </div> #}
+
+                        <div class="flex flex-col h-full justify-between gap-4 border-2 border-red-500 p-4">
+
+                        {# Row 2 : Le Logo Principal (AUREA) #}
+            <div class="border-2 border-green-400 py-8 text-center">
+                <h1 class="text-light-rose text-6xl md:text-8xl leading-none">RESTAURANT</h1>
+            </div>
+            
+            {# Row 1 : Sous-titre ou élément supérieur #}
+            <div class="border-2 border-yellow-400 py-4 text-center">
+                <p class="font-sans text-light-rose/60 tracking-[0.2em] uppercase text-sm">Aurea</p>
+            </div>
+
+            
+
+            {# Row 3 : Bouton ou texte inférieur #}
+            <div class="border-2 border-purple-400 py-4 justify-between text-center">
+            <a href="#collection" class="btn-aurea">Explore 1</a>
+                <a href="#collection" class="btn-aurea">Explore 2</a>
+            </div>
+
+        </div>
+
+
+                    {# Image Droite #}
+                        <div class="w-1/4 aspect-[3/4] overflow-hidden rounded-sm shadow-2xl">
+                            <img src="{{ asset('images/hero-right.jpg') }}" class="w-full h-full object-cover">
+                        </div>
+                    
+                </div>
+
+
+<div class="my-5 relative z-10 w-full max-w-4xl mx-auto items-center text-center text-light-rose text-sm">
+<ul><li>
+                <p class="">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <hr>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <li>
+
+                <p  class="">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+
+                    </li>
+                    </ul>
+
+
 </div>
-    
 
-    {# La Row avec tes 3 colonnes (Images + Logo) #}
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 flex justify-between items-center">
-        
-        {# Image Gauche #}
-            <div class="w-1/4 aspect-[3/4] overflow-hidden rounded-sm shadow-2xl">
-                <img src="{{ asset('images/hero-left.jpg') }}" class="w-full h-full object-cover">
-            </div>
-
-
-        {# Logo Centre #}
-            <div class="flex-1 text-center px-4 animate-fade-in">
-                <h1 class="text-light-rose text-5xl md:text-8xl">AUREA</h1>
-                <p class="font-sans text-[20px] text-light-rose/80 italic">Aurea Collection</p>
-            </div>
-
-        {# Image Droite #}
-            <div class="w-1/4 aspect-[3/4] overflow-hidden rounded-sm shadow-2xl">
-                <img src="{{ asset('images/hero-right.jpg') }}" class="w-full h-full object-cover">
-            </div>
-        
-    </div>
-
-
-
-</section>
+        </section>
 
         {# 2. Section COLLECTION (Light Rose Gold) #}
         <section id="collection" class="min-h-screen py-32 bg-light-rose flex items-center scroll-mt-20">
