@@ -1,0 +1,49 @@
+<section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden bg-rich-green">
+    
+    {# Conteneur de l'image de fond #}
+    <div class="absolute inset-0 z-0">
+        <img src="{{ asset('images/hero_bg.svg') }}" 
+             class="w-full h-full object-cover opacity-30" 
+             alt="Background Pattern">
+             
+        {# Overlay pour assurer la lisibilité du texte #}
+        <div class="absolute inset-0 bg-gradient-to-b from-rich-green/60 via-transparent to-rich-green/60"></div>
+    </div>
+
+    {# Texte par-dessus #}
+    <div class="relative z-10 text-center">
+        <h1 class="text-light-rose">AUREA</h1>
+        <p class="font-sans text-[25px] text-light-rose/80">Spring / Summer 2026</p>
+    </div>
+</section>
+
+{# Section HERO #}
+<section id="home" class="relative min-h-screen flex flex-col bg-rich-green bg-hero-pattern overflow-hidden">
+    
+    {# 1. La Row principale qui contient les 3 blocs (Images + Logo) #}
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 flex justify-between items-center">
+        
+        {# Bloc Image Gauche #}
+        <div class="hidden md:block w-1/4 aspect-[3/4] overflow-hidden rounded-sm shadow-2xl animate-fade-in" style="animation-delay: 0.3s;">
+            <img src="{{ asset('images/hero-left.jpg') }}" class="w-full h-full object-cover" alt="Collection Preview Left">
+        </div>
+
+        {# Bloc Centre : Le Logo Aurea / The Seasons #}
+        <div class="flex-1 text-center px-4 animate-fade-in">
+            <h1 class="text-light-rose text-5xl md:text-7xl lg:text-8xl mb-2">AUREA</h1>
+            <p class="font-sans text-[18px] md:text-[25px] text-light-rose/80 italic">Aurea Collection</p>
+        </div>
+
+        {# Bloc Image Droite #}
+        <div class="hidden md:block w-1/4 aspect-[3/4] overflow-hidden rounded-sm shadow-2xl animate-fade-in" style="animation-delay: 0.6s;">
+            <img src="{{ asset('images/hero-right.jpg') }}" class="w-full h-full object-cover" alt="Collection Preview Right">
+        </div>
+        
+    </div>
+
+    {# 2. Background SVG (toujours en fond) 
+    <div class="absolute inset-0 z-0">
+        <img src="{{ asset('images/hero_bg.svg') }}" class="w-full h-full object-cover opacity-10" alt="">
+    </div> #}
+
+</section>

@@ -1,14 +1,83 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
-    <div class="h-screen bg-slate-900 flex flex-col items-center justify-center text-white">
-        <h1 class="text-5xl font-bold text-sky-400 mb-4">Bravo !</h1>
-        <p class="text-xl">Si le fond est sombre et ce texte est bleu, Tailwind fonctionne.</p>
+    {# --- NAVBAR --- #}
+    {% include '_navbar.html.twig' %}
+
+    {# --- SECTIONS (ROWS) --- #}
+    <main>
+        {# 1. Section HERO (Rich Green + Image) #}
+        {# scroll-mt-20 permet au scroll de s'arrêter pile sous la navbar #}
         
-        <div data-controller="hello" class="mt-8">
-            <button data-action="click->hello#greet" class="bg-sky-500 px-6 py-2 rounded-full font-bold">
-                Tester Stimulus
-            </button>
-            <p data-hello-target="output" class="mt-4 text-yellow-400 font-mono"></p>
-        </div>
+        {# Section 1 : Hero #}
+
+
+
+        {# Section HERO avec le background en classe CSS  bg-hero-pattern #}
+<section id="home" class="relative min-h-screen bg-rich-green overflow-hidden">
+
+<div class="absolute inset-0 bg-rich-green" 
+     style="background-image: url('{{ asset('images/hero_bg.svg') }}'); background-size: cover;">
+</div>
+    
+
+    {# La Row avec tes 3 colonnes (Images + Logo) #}
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 flex justify-between items-center">
+        
+        {# Image Gauche #}
+            <div class="w-1/4 aspect-[3/4] overflow-hidden rounded-sm shadow-2xl">
+                <img src="{{ asset('images/hero-left.jpg') }}" class="w-full h-full object-cover">
+            </div>
+
+
+        {# Logo Centre #}
+            <div class="flex-1 text-center px-4 animate-fade-in">
+                <h1 class="text-light-rose text-5xl md:text-8xl">AUREA</h1>
+                <p class="font-sans text-[20px] text-light-rose/80 italic">Aurea Collection</p>
+            </div>
+
+        {# Image Droite #}
+            <div class="w-1/4 aspect-[3/4] overflow-hidden rounded-sm shadow-2xl">
+                <img src="{{ asset('images/hero-right.jpg') }}" class="w-full h-full object-cover">
+            </div>
+        
     </div>
+
+
+
+</section>
+
+        {# 2. Section COLLECTION (Light Rose Gold) #}
+        <section id="collection" class="min-h-screen py-32 bg-light-rose flex items-center scroll-mt-20">
+            <div class="max-w-5xl mx-auto px-6 text-center">
+                <h2 class="text-rich-green mb-8">The Collection</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                    <div class="aspect-[3/4] bg-dark-rose/20 rounded-lg shadow-inner flex items-center justify-center">
+                        <span class="text-rich-green/40 font-display text-4xl italic">Item 01</span>
+                    </div>
+                    <div class="aspect-[3/4] bg-dark-rose/20 rounded-lg shadow-inner flex items-center justify-center">
+                        <span class="text-rich-green/40 font-display text-4xl italic">Item 02</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# 3. Section ABOUT (Dark Rose Gold) #}
+        <section id="about" class="min-h-screen py-32 bg-dark-rose text-white flex items-center scroll-mt-20">
+            <div class="max-w-3xl mx-auto px-6 text-center">
+                <h2 class="text-white mb-6">Our Story</h2>
+                <p class="text-[25px] leading-relaxed opacity-90">
+                    Crafting elegance through the lens of nature's ever-changing rhythms. 
+                    Each piece tells a story of craftsmanship and sustainable luxury.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    {# --- FOOTER --- #}
+    <footer class="bg-footer-dark py-16 text-light-rose border-t border-white/5">
+        <div class="text-center font-sans text-lg">
+            <p>&copy; 2026 AUREA. All rights reserved.</p>
+        </div>
+    </footer>
 {% endblock %}
