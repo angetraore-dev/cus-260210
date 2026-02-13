@@ -11,9 +11,18 @@ enum ReservationStatus: string
     public function getLabel(): string
     {
         return match($this) {
-            self::PENDING => 'En attente',
-            self::CONFIRMED => 'Confirmée',
-            self::CANCELLED => 'Annulée',
+            self::PENDING => 'Pending',
+            self::CONFIRMED => 'Confirmed',
+            self::CANCELLED => 'Cancelled',
+        };
+    }
+
+    public function getBadgeColor(): string
+    {
+        return match($this) {
+            self::PENDING => 'warning',   // Orange
+            self::CONFIRMED => 'success', // Vert
+            self::CANCELLED => 'danger',  // Rouge
         };
     }
 }

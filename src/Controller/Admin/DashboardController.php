@@ -2,6 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
+use App\Entity\Configuration;
+use App\Entity\Dish;
+use App\Entity\OpeningHour;
+use App\Entity\Reservation;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use Symfony\Component\Routing\Attribute\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -11,9 +18,19 @@ use Symfony\Component\HttpFoundation\Response;
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {
+    #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return parent::index();
+        // 1. On récupère le générateur d'URL d'EasyAdmin
+        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
+
+        // 2. On redirige vers le CRUD des Réservations
+        return $this->redirect(
+            $adminUrlGenerator->setController(ReservationCrudController::class)->generateUrl());
+
+        //return parent::index();
+
+
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
@@ -45,6 +62,28 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        yield MenuItem::section('Menu');
+        // On lie l'entité Category à son CrudController
+        yield MenuItem::linkToCrud('Categories', 'fa fa-tags', Category::class)
+            ->setController(CategoryCrudController::class);
+
+        // On lie l'entité Dish à son CrudController
+        yield MenuItem::linkToCrud('Dishes', 'fa fa-utensils', Dish::class)
+            ->setController(DishCrudController::class);
+
+        yield MenuItem::section('Management');
+        // On lie l'entité Reservation à son CrudController
+        yield MenuItem::linkToCrud('Reservations', 'fa fa-calendar-check', Reservation::class)
+            ->setController(ReservationCrudController::class)
+            ->setBadge(5, 'danger')
+        ;
+
+        yield MenuItem::linkToCrud('Opening Hours', 'fa fa-clock', OpeningHour::class)
+            ->setController(OpeningHourCrudController::class);
+
+        yield MenuItem::section('Settings');
+        yield MenuItem::linkToCrud('Global Config', 'fa fa-cog', Configuration::class)
+            ->setController(ConfigurationCrudController::class);
+
     }
 }
