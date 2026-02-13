@@ -99,6 +99,17 @@
     .btn-aurea-outline:hover {
         @apply bg-light-rose text-rich-green scale-105;
     }
+
+    /*DailyMenu*/
+    .list-group-item {
+        border: none;
+        border-bottom: 1px dashed #ccc; /* Effet de ligne élégant */
+    }
+    .fw-bold {
+        color: #2c3e50;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+    }
 }
 
 /* --- UTILITAIRES POUR LE FOOTER --- */

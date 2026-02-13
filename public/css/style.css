@@ -1,0 +1,98 @@
+/* --- BASE --- */
+h1 {
+    font-family: "The Seasons", serif;
+    font-size: clamp(32px, 4vw, 45px);
+    line-height: 1.25;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+body, p, h2, h3, li {
+    font-family: "Balto", sans-serif;
+    font-size: clamp(18px, 1.5vw, 25px);
+    line-height: 1.625;
+}
+
+body {
+    background-color: #273d29; /* rich-green */
+    color: #deb6a3; /* light-rose */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- COMPONENTS --- */
+.nav-link {
+    display: inline-block;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #deb6a3;
+    text-decoration: none;
+    font-size: clamp(14px, 1.1vw, 16px);
+}
+
+.nav-link:hover {
+    color: #DC978E; /* dark-rose */
+    transform: scale(1.1);
+    text-decoration: underline;
+    text-underline-offset: 12px;
+    text-decoration-thickness: 1px;
+}
+
+.btn-nav-contact {
+    display: inline-block;
+    border: 1px solid #deb6a3;
+    padding: 0.5rem 2rem;
+    color: #deb6a3;
+    transition: all 0.5s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: clamp(13px, 1vw, 15px);
+    text-decoration: none;
+}
+
+.btn-nav-contact:hover {
+    border-color: #DC978E;
+    color: #DC978E;
+    text-decoration: underline;
+    transform: scale(1.1);
+    text-underline-offset: 8px;
+    background-color: rgba(220, 151, 142, 0.05);
+}
+
+
+.arrow-link {
+    display: inline-block;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #deb6a3;
+    text-decoration: none;
+    font-size: clamp(14px, 1.1vw, 16px);
+}
+
+.arrow-link:hover {
+    color: #DC978E; /* dark-rose */
+    transform: scale(1.1);
+    text-decoration: underline;
+    text-underline-offset: 12px;
+    text-decoration-thickness: 1px;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 2.5s ease-out forwards;
+}
+
+/*DailyMenu*/
+.list-group-item {
+    border: none;
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+}

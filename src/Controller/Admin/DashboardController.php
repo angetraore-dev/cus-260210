@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Entity\Configuration;
+use App\Entity\DailyMenu;
 use App\Entity\Dish;
 use App\Entity\OpeningHour;
 use App\Entity\Reservation;
@@ -62,22 +63,27 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::section('Menu');
-        // On lie l'entité Category à son CrudController
+
+        yield MenuItem::section('Restaurant Menu');
+
         yield MenuItem::linkToCrud('Categories', 'fa fa-tags', Category::class)
             ->setController(CategoryCrudController::class);
 
-        // On lie l'entité Dish à son CrudController
         yield MenuItem::linkToCrud('Dishes', 'fa fa-utensils', Dish::class)
             ->setController(DishCrudController::class);
 
+        // (Polední menu)
+        yield MenuItem::section('Daily Operations');
+        yield MenuItem::linkToCrud('Daily Menu', 'fa fa-calendar-day', DailyMenu::class);
+
+
+        //Management: Reservation and Opening Hours and configuration_user
         yield MenuItem::section('Management');
-        // On lie l'entité Reservation à son CrudController
+
         yield MenuItem::linkToCrud('Reservations', 'fa fa-calendar-check', Reservation::class)
             ->setController(ReservationCrudController::class)
             ->setBadge(5, 'danger')
         ;
-
         yield MenuItem::linkToCrud('Opening Hours', 'fa fa-clock', OpeningHour::class)
             ->setController(OpeningHourCrudController::class);
 

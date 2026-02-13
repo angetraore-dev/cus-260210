@@ -4,12 +4,44 @@
         <meta charset="UTF-8">
         <title>{% block title %}Symfony Modern Stack{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2290%22>🚀</text></svg>">
-        
-        {# Le CSS généré par Node #}
-        <link rel="stylesheet" href="{{ asset('app.css') }}">
 
-        {# Le JS géré par AssetMapper #}
-        {{ importmap('app') }}
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script type="module">
+            import { Application, Controller } from 'https://unpkg.com/@hotwired/stimulus/dist/stimulus.js'
+            window.Stimulus = Application.start()
+        </script>
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            'rich-green': '#273d29',
+                            'light-rose': '#deb6a3',
+                            'dark-rose': '#DC978E',
+                            'footer-dark': '#202F1E',
+                            'footer-left': '#709073',
+                            'footer-right': '#506a52',
+                        },
+                        fontFamily: {
+                            'seasons': ['"The Seasons"', 'serif'],
+                            'balto': ['Balto', 'sans-serif'],
+                        },
+                        letterSpacing: {
+                            'widest-extra': '0.2em',
+                        }
+                    }
+                }
+            }
+        </script>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <script src="{{ asset('js/app.js') }}"></script>
+
+        {# Le CSS généré par Node <link rel="stylesheet" href="{{ asset('app.css') }}"> #}
+
+
+        {# Le JS géré par AssetMapper {{ importmap('app') }} #}
+
     </head>
     <body>
         {% block body %}{% endblock %}

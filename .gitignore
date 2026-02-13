@@ -13,6 +13,11 @@
 /node_modules/
 /assets/images/web_aurea/
 /aurea_navrh_webu.xd
+public/.DS_Store
+public/images/.DS_Store
+public/images/web_aurea/.DS_Store
+.htaccess
+.DS_Store
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
