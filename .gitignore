@@ -9,6 +9,8 @@
 /var/
 /vendor/
 /node_modules/
+/assets/images/web_aurea/
+/aurea_navrh_webu.xd
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
