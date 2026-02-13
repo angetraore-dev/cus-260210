@@ -514,3 +514,38 @@ css:
         @apply text-dark-rose border-dark-rose scale-105 underline underline-offset-4;
     }
 }
+
+
+
+
+            <section id="home" class="relative min-h-screen flex items-center justify-center pt-20">
+                <div class="w-full max-w-7xl mx-auto px-6">
+                    <div class="grid grid-cols-3 gap-4 md:gap-12 items-center">
+
+                        {# Image Gauche #}
+                        <div class="flex justify-center">
+                            <div class="aspect-[3/4] w-full max-w-[180px] lg:max-w-[320px] overflow-hidden shadow-2xl">
+                                <img src="{{ asset('images/hero-left.jpg') }}" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+
+                        {# Centre : Titre & Bouton #}
+                        <div class="flex flex-col space-y-12 text-center items-center">
+                            <div class="animate-fade-in">
+                                <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs opacity-60 mb-6">Aurea Collection</p>
+                                <h1 class="text-5xl md:text-7xl lg:text-9xl !leading-none whitespace-nowrap">The<br>Seasons</h1>
+                            </div>
+                            <a href="#menu" class="btn-aurea">Jídelní lístek</a>
+                        </div>
+
+                        {# Image Droite #}
+                        <div class="flex justify-center">
+                            <div class="aspect-[3/4] w-full max-w-[180px] lg:max-w-[320px] overflow-hidden shadow-2xl">
+                                <img src="{{ asset('images/hero-right.jpg') }}" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+

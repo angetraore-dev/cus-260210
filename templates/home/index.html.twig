@@ -3,117 +3,132 @@
 {% block title %}Aurea - Gastronomy & Design{% endblock %}
 
 {% block body %}
-    {# --- NAVBAR CENTRÉE (Style XD - Sans Logo) --- #}
-    <nav class="fixed top-0 w-full z-50 bg-rich-green/90 py-8 backdrop-blur-sm shadow-xl">
-        <div class="container mx-auto flex justify-center items-center">
-            <div class="flex items-center" style="gap: clamp(1.5rem, 4vw, 5rem);">
-                <a href="#home" class="nav-link">Domů</a>
-                <a href="#menu" class="nav-link">Menu</a>
-                <a href="#special" class="nav-link">Speciální nabídka</a>
-                <a href="#gallery" class="nav-link">Galerie</a>
-                <a href="#story" class="nav-link">O nás</a>
+    {# relative min-h-screen bg-rich-green overflow-hidden #}
+    <main class="" >
 
-                {# Bouton Contact avec l'effet rectangle #}
-                <a href="#contact" class="btn-nav-contact">Kontakt</a>
-            </div>
+        <div class="absolute inset-0 bg-rich-green"
+             style="background-image: url('{{ asset('images/hero_bg.svg') }}'); background-size: cover;">
         </div>
-    </nav>
+        {# "relative z-10 #}
+            {# --- NAVBAR CENTRÉE (Style XD - Sans Logo) --- #}
+            <nav class="fixed top-0 w-full z-50 bg-rich-green/90 py-8 backdrop-blur-sm shadow-xl">
+                <div class="container mx-auto flex justify-center items-center">
+                    <div class="flex items-center" style="gap: clamp(1.5rem, 4vw, 5rem);">
 
-    {# --- HERO SECTION (3 colonnes alignées en Row) --- #}
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20">
-        <div class="w-full max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-3 gap-4 md:gap-12 items-center">
+                        <a href="#home" class="nav-link">Domů</a>
+                        <a href="#menu" class="nav-link">Menu</a>
+                        <a href="#special" class="nav-link">Speciální nabídka</a>
+                        <a href="#gallery" class="nav-link">Galerie</a>
+                        <a href="#story" class="nav-link">O nás</a>
 
-                {# Image Gauche #}
-                <div class="flex justify-center">
-                    <div class="aspect-[3/4] w-full max-w-[180px] lg:max-w-[320px] overflow-hidden shadow-2xl">
-                        <img src="{{ asset('images/hero-left.jpg') }}" class="w-full h-full object-cover">
+                        {# Bouton Contact avec l'effet rectangle #}
+                        <a href="#contact" class="btn-nav-contact">Kontakt</a>
                     </div>
                 </div>
+            </nav>
 
-                {# Centre : Titre & Bouton #}
-                <div class="flex flex-col space-y-12 text-center items-center">
-                    <div class="animate-fade-in">
-                        <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs opacity-60 mb-6">Aurea Collection</p>
-                        <h1 class="text-5xl md:text-7xl lg:text-9xl !leading-none whitespace-nowrap">The<br>Seasons</h1>
-                    </div>
-                    <a href="#menu" class="btn-aurea">Jídelní lístek</a>
-                </div>
+            {# --- HERO SECTION (3 colonnes alignées en Row) --- #}
+            <section id="home" class="relative min-h-screen flex items-center justify-center pt-4 md:pt-20">
+                <div class="w-full max-w-7xl mx-auto px-6">
+                    <div class="grid grid-cols-3 gap-4 md:gap-12 items-center">
 
-                {# Image Droite #}
-                <div class="flex justify-center">
-                    <div class="aspect-[3/4] w-full max-w-[180px] lg:max-w-[320px] overflow-hidden shadow-2xl">
-                        <img src="{{ asset('images/hero-right.jpg') }}" class="w-full h-full object-cover">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    {# --- JÍDELNÍ LÍSTEK (Menu Gastronomique) --- #}
-    <section id="menu" class="py-32 bg-rich-green">
-        <div class="max-w-4xl mx-auto px-6">
-            <h1 class="text-center mb-24">Jídelní lístek</h1>
-
-            {# PŘEDKRMY (Entrées) #}
-            <div class="mb-20">
-                <h2 class="text-2xl uppercase tracking-widest mb-10 border-b border-light-rose/20 pb-4">Předkrmy</h2>
-                <div class="space-y-12">
-                    <div class="menu-row">
-                        <div class="max-w-2xl">
-                            <h3>Hovězí tatarák</h3>
-                            <p class="text-[18px] opacity-60 italic">Kapary, šalotka, žloutek, dijonská hořčice, topinky</p>
+                        {# Image Gauche #}
+                        <div class="flex justify-center">
+                            <div class="aspect-[3/4] w-full max-w-[180px] lg:max-w-[320px] overflow-hidden shadow-2xl">
+                                <img src="{{ asset('images/hero-left.jpg') }}" class="w-full h-full object-cover">
+                            </div>
                         </div>
-                        <span class="font-bold text-dark-rose">285 Kč</span>
-                    </div>
-                    <div class="menu-row">
-                        <div class="max-w-2xl">
-                            <h3>Marinovaný losos</h3>
-                            <p class="text-[18px] opacity-60 italic">Kopr, granátové jablko, růžový pepř, červená řepa</p>
+
+                        {# Centre : Titre & Bouton #}
+                        <div class="flex flex-col space-y-12 text-center items-center">
+                            <div class="animate-fade-in">
+                                <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs opacity-60 mb-6">Aurea Collection</p>
+                                <h1 class="text-5xl md:text-7xl lg:text-9xl !leading-none whitespace-nowrap">The<br>Seasons</h1>
+                            </div>
+
+
+                            <a href="#menu" class="btn-aurea">Jídelní lístek</a>
+
                         </div>
-                        <span class="font-bold text-dark-rose">315 Kč</span>
+
+                        {# Image Droite #}
+                        <div class="flex justify-center">
+                            <div class="aspect-[3/4] w-full max-w-[180px] lg:max-w-[320px] overflow-hidden shadow-2xl">
+                                <img src="{{ asset('images/hero-right.jpg') }}" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
+            </section>
 
-            {# HLAVNÍ CHODY (Plats principaux) #}
-            <div class="mb-20">
-                <h2 class="text-2xl uppercase tracking-widest mb-10 border-b border-light-rose/20 pb-4">Hlavní chody</h2>
-                <div class="space-y-12">
-                    <div class="menu-row">
-                        <div class="max-w-2xl">
-                            <h3>Kuřecí supreme</h3>
-                            <p class="text-[18px] opacity-60 italic">Grilovaná kukuřice, hráškové pyré, tymiánová omáčka</p>
+
+            {# --- JÍDELNÍ LÍSTEK (Menu Gastronomique) --- #}
+            <section id="menu" class="py-32 bg-rich-green">
+                <div class="max-w-4xl mx-auto px-6">
+                    <h1 class="text-center mb-24">Jídelní lístek</h1>
+
+                    {# PŘEDKRMY (Entrées) #}
+                    <div class="mb-20">
+                        <h2 class="text-2xl uppercase tracking-widest mb-10 border-b border-light-rose/20 pb-4">Předkrmy</h2>
+                        <div class="space-y-12">
+                            <div class="menu-row">
+                                <div class="max-w-2xl">
+                                    <h3>Hovězí tatarák</h3>
+                                    <p class="text-[18px] opacity-60 italic">Kapary, šalotka, žloutek, dijonská hořčice, topinky</p>
+                                </div>
+                                <span class="font-bold text-dark-rose">285 Kč</span>
+                            </div>
+                            <div class="menu-row">
+                                <div class="max-w-2xl">
+                                    <h3>Marinovaný losos</h3>
+                                    <p class="text-[18px] opacity-60 italic">Kopr, granátové jablko, růžový pepř, červená řepa</p>
+                                </div>
+                                <span class="font-bold text-dark-rose">315 Kč</span>
+                            </div>
                         </div>
-                        <span class="font-bold text-dark-rose">395 Kč</span>
+                    </div>
+
+                    {# HLAVNÍ CHODY (Plats principaux) #}
+                    <div class="mb-20">
+                        <h2 class="text-2xl uppercase tracking-widest mb-10 border-b border-light-rose/20 pb-4">Hlavní chody</h2>
+                        <div class="space-y-12">
+                            <div class="menu-row">
+                                <div class="max-w-2xl">
+                                    <h3>Kuřecí supreme</h3>
+                                    <p class="text-[18px] opacity-60 italic">Grilovaná kukuřice, hráškové pyré, tymiánová omáčka</p>
+                                </div>
+                                <span class="font-bold text-dark-rose">395 Kč</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    {# --- PARTENAIRE ALBATROSS (Avant le Footer) --- #}
-    <section class="py-20 bg-rich-green border-t border-light-rose/10 text-center">
-        <p class="uppercase tracking-[0.3em] text-[10px] opacity-50 mb-8">Navštivte naše golfové hřiště</p>
-        <a href="https://albatross.cz/cs/" target="_blank" rel="noopener" class="btn-aurea !text-sm">
-            Hřiště Albatross Website
-        </a>
-    </section>
+            {# --- PARTENAIRE ALBATROSS (Avant le Footer) --- #}
+            <section class="py-20 bg-rich-green border-t border-light-rose/10 text-center">
+                <p class="uppercase tracking-[0.3em] text-[10px] opacity-50 mb-8">Navštivte naše golfové hřiště</p>
+                <a href="https://albatross.cz/cs/" target="_blank" rel="noopener" class="btn-aurea !text-sm">
+                    Hřiště Albatross Website
+                </a>
+            </section>
 
-    {# --- FOOTER --- #}
-    <footer class="bg-footer-dark py-20 px-12 border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-10">
-            <div class="footer-text-left text-[15px] leading-relaxed">
-                <p class="font-bold mb-2 uppercase tracking-widest text-light-rose">Smart Catering s.r.o.</p>
-                IČ 24404608 | DIČ CZ24404608<br>
-                Křižovnická 86/6 Praha 11000
-            </div>
+            {# --- FOOTER --- #}
+            <footer class="bg-footer-dark py-20 px-12 border-t border-white/5">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-10">
+                    <div class="footer-text-left text-[15px] leading-relaxed">
+                        <p class="font-bold mb-2 uppercase tracking-widest text-light-rose">Smart Catering s.r.o.</p>
+                        IČ 24404608 | DIČ CZ24404608<br>
+                        Křižovnická 86/6 Praha 11000
+                    </div>
 
-            <div class="footer-text-right text-[15px] text-right opacity-60">
-                <p>Website design and programming</p>
-                <p class="font-bold uppercase tracking-widest text-white">Toli Code & Design</p>
-            </div>
-        </div>
-    </footer>
+                    <div class="footer-text-right text-[15px] text-right opacity-60">
+                        <p>Website design and programming</p>
+                        <p class="font-bold uppercase tracking-widest text-white">Toli Code & Design</p>
+                    </div>
+                </div>
+            </footer>
+
+    </main>
+
 {% endblock %}

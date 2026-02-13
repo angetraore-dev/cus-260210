@@ -88,6 +88,17 @@
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
     }
+
+
+    .btn-aurea-outline {
+        @apply border border-light-rose text-light-rose px-8 py-3 uppercase tracking-widest transition-all duration-500;
+        font-size: 13px;
+        display: inline-block;
+    }
+
+    .btn-aurea-outline:hover {
+        @apply bg-light-rose text-rich-green scale-105;
+    }
 }
 
 /* --- UTILITAIRES POUR LE FOOTER --- */
