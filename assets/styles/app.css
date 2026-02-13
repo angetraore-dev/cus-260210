@@ -1,165 +1,95 @@
 @import "tailwindcss";
-
-/* On force le scan des fichiers Twig pour Tailwind 4 */
 @source "../../templates/**/*.twig";
 
-
 @theme {
+    /* --- COULEURS STRICTES SPECS CLIENT --- */
     --color-rich-green: #273d29;
     --color-light-rose: #deb6a3;
     --color-dark-rose: #DC978E;
     --color-footer-dark: #202F1E;
-    
-    --font-display: "The Seasons", serif;
-    --font-sans: "Balto", sans-serif;
+    --color-footer-left: #709073;
+    --color-footer-right: #506a52;
 }
 
 @layer base {
-    h1 { font-family: var(--font-display); font-size: 45px; @apply leading-tight; }
-    h2 { font-family: var(--font-sans); font-size: 25px; @apply leading-tight font-semibold; }
-    body { font-family: var(--font-sans); font-size: 25px; color: var(--color-rich-green); }
+    /* Font H1 : 45px selon specs (sauf Hero Logo qui est plus grand sur XD) */
+    h1 {
+        font-family: "The Seasons", serif;
+        font-size: clamp(32px, 4vw, 45px);
+        @apply leading-tight tracking-widest uppercase;
+    }
+
+    /* Font Body & Subtitles : 25px selon specs */
+    body, p, h2, h3, li {
+        font-family: "Balto", sans-serif;
+        font-size: clamp(18px, 1.5vw, 25px);
+        @apply leading-relaxed;
+    }
+
+    body {
+        @apply bg-rich-green text-light-rose antialiased;
+    }
 }
 
 @layer components {
-
-
-    /* --- OPTION A : NAVBAR ACTIVE STATE --- */
-    .active-link {
-        @apply text-dark-rose underline decoration-1 underline-offset-8;
+    /* --- CONFIGURATION DES LIENS DE LA NAV (STYLE XD) --- */
+    .nav-link {
+        /* 1. Base : On utilise inline-block pour permettre l'agrandissement (scale) */
+        @apply relative transition-all duration-500 ease-in-out uppercase tracking-[0.2em] text-light-rose;
+        display: inline-block;
+        text-decoration: none;
+        font-size: clamp(14px, 1.1vw, 16px); /* Taille élégante du XD */
     }
 
-    /* --- OPTION B : LE BOUTON XD STYLE --- */
-    .btn-aurea {
-        /* État de base : rectangle fin en Light Rose */
-        @apply inline-block px-10 py-4 border border-light-rose text-light-rose font-sans transition-all duration-500 ease-in-out;
-        font-size: 18px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
+    /* --- EFFET AU SURVOL (Specs : Dark Rose + Underline + Enlargement) --- */
+    .nav-link:hover {
+        /* Changement de couleur vers le Dark Rose Gold */
+        @apply text-dark-rose;
 
-    .btn-aurea:hover {
-        /* Effet d'agrandissement : le scale simule l'élargissement du rectangle */
-        @apply text-dark-rose border-dark-rose scale-110;
-        /* On accentue l'effet XD avec un espacement des lettres et une ombre portée douce */
-        letter-spacing: 3px;
-        box-shadow: 0 0 25px rgba(220, 151, 142, 0.2);
+        /* Effet "Enlargement" : on grossit de 10% */
+        transform: scale(1.1);
+
+        /* Soulignement élégant décalé (Pixel Perfect XD) */
         text-decoration: underline;
+        text-underline-offset: 12px;
+        text-decoration-thickness: 1px;
+    }
+
+    /* --- BOUTON CONTACT (Version Rectangle avec Bordure) --- */
+    .btn-nav-contact {
+        @apply border border-light-rose px-8 py-2 text-light-rose transition-all duration-500 uppercase tracking-widest;
+        display: inline-block;
+        font-size: clamp(13px, 1vw, 15px);
+    }
+
+    .btn-nav-contact:hover {
+        @apply border-dark-rose text-dark-rose underline;
+        /* L'effet rectangle enlargement sur un bouton avec bordure */
+        transform: scale(1.1);
         text-underline-offset: 8px;
-    }
-    
-
-    .bg-hero-pattern {
-        /* Symfony comprend le chemin relatif vers assets/images/ */
-        background-image: url('../images/hero_bg.svg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        background-color: rgba(220, 151, 142, 0.05);
     }
 
-    /* Animation Fade-in pour le logo */
+    /* --- MENU GASTRONOMIQUE (Jídelní lístek) --- */
+    .menu-row {
+        @apply flex justify-between items-baseline border-b border-light-rose/10 pb-4 transition-colors duration-300;
+    }
+
+    .menu-row:hover {
+        @apply border-light-rose/30;
+    }
+
+    /* --- ANIMATIONS --- */
     .animate-fade-in {
-        animation: fadeIn 2s ease-out forwards;
+        animation: fadeIn 2.5s ease-out forwards;
     }
 
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
+        from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Style des liens du menu */
-    .nav-link {
-        @apply relative text-light-rose transition-colors duration-300 ease-in-out;
-        /* Mobile : 16px | Desktop (md:) : 18px */
-        font-size: 16px;
-        /*@apply relative text-light-rose transition-all duration-300;*/
-
-    }
-
-    @media (min-width: 768px) {
-        .nav-link {
-            font-size: 18px;
-        }
-    }
-    
-    .nav-link:hover {
-        @apply text-dark-rose scale-105 decoration-1 underline underline-offset-8;
-        /*@apply text-dark-rose underline decoration-1 underline-offset-8;*/
-    }
-
-    /* Bouton adapté */
-    .btn-custom {
-        @apply px-4 py-1.5 border border-light-rose text-light-rose transition-all duration-300 text-[16px] md:text-[18px];
-    }
-
-    .btn-custom:hover {
-        @apply text-dark-rose border-dark-rose scale-105 underline underline-offset-4;
-    }
-}
-/*
-@font-face {
-    font-family: 'The Seasons';
-    src: local('The Seasons') format('woff2')
-    url('../fonts/the-seasons-regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
 }
 
-@font-face {
-    font-family: 'Inter'; 
-    src: local('../fonts/inter-regular.woff2') format('woff2');
-    font-weight: 400;
-}
-
-@theme {
-    --color-rich-green: #273d29;
-    --color-light-rose: #deb6a3;
-    --color-dark-rose: #DC978E;
-    --color-footer-dark: #202F1E;
-
-    --font-display: "The Seasons", serif;
-    --font-sans: "Inter", sans-serif;
-}
-
-@layer base {
-    h1 {
-        font-family: var(--font-display);
-        font-size: 45px;
-        color: var(--color-rich-green);
-        @apply leading-tight mb-6;
-    }
-    
-    h2 {
-        font-family: var(--font-sans);
-        font-size: 25px;
-        color: var(--color-dark-rose);
-        @apply font-semibold mb-4;
-    }
-    
-    body {
-        font-family: var(--font-sans);
-        font-size: 18px; 
-        color: var(--color-rich-green);
-        @apply antialiased leading-relaxed;
-    }
-}
-
-@layer components {
-    .nav-link {
-        @apply relative text-light-rose transition-colors duration-300;
-    }
-
-    .nav-link::after {
-        content: '';
-        @apply absolute left-0 bottom-[-4px] w-0 h-[1px] bg-dark-rose transition-all duration-300;
-    }
-
-    .nav-link:hover {
-        @apply text-dark-rose;
-    }
-
-    .nav-link:hover::after {
-        @apply w-full;
-    }
-}
-*/
+/* --- UTILITAIRES POUR LE FOOTER --- */
+.footer-text-left { color: var(--color-footer-left); }
+.footer-text-right { color: var(--color-footer-right); }
