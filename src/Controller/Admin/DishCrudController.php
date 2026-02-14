@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Dish;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -21,12 +23,26 @@ class DishCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name', 'Dish Name'),
-            TextEditorField::new('description', 'Ingredients / Description'),
-            MoneyField::new('price', 'Price')
-                ->setCurrency('EUR') // Ou 'CZK' selon ton besoin
-                ->setStoredAsCents(false), // Si tu as utilisé un float en base
-            AssociationField::new('category', 'Category'),
+            TextField::new('name', 'Název pokrmu'),
+            TextEditorField::new('description', 'Popis složení'),
+            MoneyField::new('price', 'Cena')
+                ->setCurrency("CZK")
+                ->setStoredAsCents(false)
+                ->setHelp('Cena v českých korunách'),
+            AssociationField::new('category', 'Kategorie')
+                ->setRequired(true),
+
+            // Le petit interrupteur magique
+            BooleanField::new('isAvaible', 'Dostupné')
+                ->setHelp('Pokud je vypnuto, pokrm se na webu nezobrazí.')
         ];
+
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('category')
+            ->add('price');
     }
 }

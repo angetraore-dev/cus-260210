@@ -18,8 +18,8 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $position = null;
+    #[ORM\Column(type: 'integer')]
+    private $position = null;
 
     /**
      * @var Collection<int, Dish>
@@ -49,12 +49,12 @@ class Category
         return $this;
     }
 
-    public function getPosition(): ?string
+    public function getPosition(): ?int
     {
         return $this->position;
     }
 
-    public function setPosition(string $position): static
+    public function setPosition(int $position): static
     {
         $this->position = $position;
 

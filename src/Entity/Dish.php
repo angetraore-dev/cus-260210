@@ -26,6 +26,9 @@ class Dish
     #[ORM\ManyToOne(inversedBy: 'dishes')]
     private ?Category $category = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isAvaible = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Dish
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function isAvaible(): ?bool
+    {
+        return $this->isAvaible;
+    }
+
+    public function setIsAvaible(?bool $isAvaible): static
+    {
+        $this->isAvaible = $isAvaible;
 
         return $this;
     }

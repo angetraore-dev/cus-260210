@@ -20,8 +20,8 @@ class CategoryCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name', 'Nom de la catégorie'),
-            IntegerField::new('position', "Ordre d'affichage"),
+            TextField::new('name', 'Název kategorie'),
+            IntegerField::new('position', 'Pořadí (číslo)'),
         ];
     }
 }

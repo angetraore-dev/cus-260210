@@ -184,7 +184,6 @@
 
             </section>
 
-
             {# Section: Polední menu bg-rich-green #}
             <section id="poldeni-menu" class="py-20">
                 {# Le conteneur qui centre tout avec une largeur max élégante (ex: 800px) #}
@@ -195,30 +194,36 @@
                         <h2 class="font-seasons text-4xl md:text-5xl uppercase tracking-[0.3em] text-light-rose">
                             POLEDNÍ MENU
                         </h2>
+                        <div class="py-4 text-sm ">
+                            {% if currentMenu %}
+                                 {{ currentMenu.startDate|date('d.m.') }}
+                                - {{ currentMenu.endDate|date('d.m.Y') }}
+                            {% else %}
+                                {# Texte de secours si aucun menu n'est valide #}
+                                Aktuální týdenní nabídka se připravuje.
+                            {% endif %}
+                        </div>
                         <div class="w-20 h-[1px] bg-dark-rose mx-auto mt-6 opacity-60"></div>
 
-                        {% if currentMenu and currentMenu is iterable %}
-                            <p class="font-balto text-sm uppercase tracking-widest text-light-rose/60 mt-6">
-                                Valid from {{ currentMenu.startDate|date('d.m.') }}
-                                to {{ currentMenu.endDate|date('d.m.Y') }}
-                            </p>
-                        {% endif %}
+
                     </div>
 
                     {% for item in currentMenu.dailyMenuItems %}
                         <div class="group flex flex-col mb-10 transition-all duration-500 ease-in-out hover:translate-x-2 animate-fade-in">
 
-                            {# 1. TITRE (Au-dessus) #}
+                            {# 1. TITRE (Au-dessus)
                             <h3 class="font-seasons text-lg md:text-xl uppercase tracking-widest text-light-rose mb-1 transition-colors duration-500 group-hover:text-dark-rose">
                                 {{ item.title }}
                             </h3>
+                            #}
+
 
                             {# 2. BLOC ALIGNÉ : Description + Pointillés + Prix #}
                             <div class="flex items-baseline w-full">
 
                                 {# Description (occupe l'espace nécessaire, ne dépasse pas 60% pour laisser de la place aux pointillés) #}
                                 {% if item.description %}
-                                    <p class="font-balto text-sm italic opacity-70 text-light-rose/90 leading-relaxed uppercase tracking-tighter max-w-[60%] shrink-0">
+                                    <p class="font-balto text-sm italic opacity-70 text-light-rose leading-relaxed uppercase tracking-tighter max-w-[60%] shrink-0">
                                         {{ item.description }}
                                     </p>
                                 {% else %}
@@ -237,59 +242,155 @@
                         </div>
                     {% endfor %}
                 </div>
-                {# Conteneur parent pour le centrage horizontal #}
-                <div class="flex flex-row items-center justify-center gap-4 md:gap-8 w-full max-w-full">
-
-                    <a href="#contact" class="btn-nav-contact whitespace-nowrap text-center text-xs md:text-sm">
-                        Kde nás najdete
+                {# Conteneur btn pour le centrage horizontal #}
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mt-24">
+                    <a href="#stala-nabidka" class="btn-nav-contact !border-light-rose !text-light-rose">
+                        Stálá nabídka
                     </a>
-
-                    <a href="#reservovat-stul" class="btn-nav-contact whitespace-nowrap text-center text-xs md:text-sm">
+                    <a href="#reservovat-stul"  class="btn-nav-contact !border-light-rose !text-light-rose">
                         Rezervovat stůl
                     </a>
                 </div>
             </section>
 
+            {# Section: SPECIÁLNÍ STÁLÁ NABÍDKA (offre speciale) #}
 
-            <section id="stala-nabidka" class="bg-light-rose text-rich-green">
-                {# Container #}
-                <div class="max-w-4xl mx-auto p-6 md:px-12">
-                    {# Titre de la section centré #}
-                    <div class="text-center mb-16">
-                        <h2 class="font-seasons text-4xl md:text-5xl uppercase tracking-[0.3em]">
-                            SPECIÁLNÍ NABÍDKA
-                        </h2>
-                        <div class="w-20 h-[1px] bg-rich-green mx-auto mt-6 opacity-60"></div>
+            {# SECTION : STÁLÁ NABÍDKA #}
+            <section id="stala-nabidka" class="py-24 bg-light-rose text-rich-green">
+                <div class="container mx-auto px-6 max-w-4xl">
 
-
-                        <ul>
-                        <li>
-                            Admin panel required to edit items (add row, remove row, field for description, field for price).
-                        </li>
-                        <li>
-                            Edit subtitle.
-                        </li>
-                        <li>
-                            Same structure as in the jídelní lístek (polévky, hlavní chody…) – visual: H1, subtitle, then H1 headings again, aligned left.
-                        </li>
-                    </ul>
+                    {# En-tête de la section #}
+                    <div class="text-center mb-20">
+                        <h2 class="text-5xl md:text-7xl font-seasons uppercase mb-2">Stálá Nabídka</h2>
+                        <p class="text-2xl font-seasons italic opacity-70">Jarní menu</p>
                     </div>
-                    <div id="reservation-stala-nabidka" class="w-full flex justify-center py-12 bottom-0">
-                        {# Le bloc des boutons #}
-                        <div class="flex flex-col items-center md:flex-row gap-8">
-                            <a href="#stala-nabidka" class="btn-nav-contact" style="border: solid #273d29; color: #273d29">
-                                stala nabidka
-                            </a>
-                            <a href="#reservovat-stul" class="btn-nav-contact" style="border: solid #273d29; color: #273d29">
-                                reservovat stul
-                            </a>
-                        </div>
+
+                    {# Liste des catégories et plats #}
+                    <div class="space-y-20">
+
+                        {% if categories|length > 0 %}
+                            {% for category in categories %}
+                                {% if category.dishes|length > 0 %}
+                                    <div class="animate-on-scroll">
+                                        {# Nom de la catégorie #}
+                                        <h3 class="text-[10px] uppercase tracking-[0.5em] mb-10 font-bold opacity-50 border-b border-rich-green/10 pb-2">
+                                            {{ category.name }}
+                                        </h3>
+
+                                        {# Grille des plats #}
+                                        <div class="grid gap-y-12">
+                                            {% for dish in category.dishes %}
+                                                <div class="group">
+                                                    {# Nom + Prix #}
+                                                    <div class="flex justify-between items-end border-b border-rich-green/20 pb-1">
+                                        <span class="font-seasons text-xl md:text-2xl uppercase group-hover:text-logo-rose transition-colors duration-300">
+                                            {{ dish.name }}
+                                        </span>
+                                                        <span class="font-balto font-bold text-lg ml-4 whitespace-nowrap">
+                                            {{ dish.price|number_format(0, '.', ' ') }} Kč
+                                        </span>
+                                                    </div>
+
+                                                    {# Description #}
+                                                    {% if dish.description %}
+                                                        <p class="text-sm italic opacity-60 font-balto mt-3 leading-relaxed max-w-2xl">
+                                                            {{ dish.description|raw }}
+                                                        </p>
+                                                    {% endif %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+                        {% else %}
+                            <p class="text-sm font-seasons text-center">V tuto chvíli není k dispozici žádné menu</p>
+                        {% endif %}
+                    </div>
+
+                    {# Actions finales #}
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-8 mt-24">
+                        <a href="#" class="btn-nav-contact !border-rich-green !text-rich-green hover:!bg-rich-green hover:!text-light-rose transition-all duration-500">
+                            Stálá nabídka
+                        </a>
+                        <button onclick="openReservationModal()" class="btn-nav-contact !border-rich-green !text-rich-green hover:!bg-rich-green hover:!text-light-rose transition-all duration-500 uppercase">
+                            Rezervovat stůl
+                        </button>
                     </div>
 
                 </div>
-
-
             </section>
+            {# stala-nabidka #}
+            <section id="stala-nabidka" class="py-20 bg-light-rose text-rich-green">
+                <div class="max-w-4xl mx-auto px-6 md:px-12">
+
+                    {# Titre de la section #}
+                    <div class="text-center mb-16">
+                        <h2 class="font-seasons text-4xl md:text-5xl uppercase tracking-[0.3em] mb-2">
+                            SPECIÁLNÍ Nabídka
+                        </h2>
+                        <span class="text-2xl font-seasons italic opacity-70">Jarní menu</span>
+                        <div class="w-20 h-[1px] bg-rich-green mx-auto mt-6 opacity-40"></div>
+                    </div>
+
+                    {# Liste du Menu par catégories #}
+                    <div class="space-y-16">
+                        {% for category in categories %}
+                            {# Utilisation de ton champ isAvaible #}
+                            {% set activeDishes = category.dishes|filter(d => d.isAvaible) %}
+
+                            {% if activeDishes|length > 0 %}
+                                <div>
+                                    {# Titre de catégorie #}
+                                    <h3 class="text-lg uppercase tracking-[0.5em] mb-8 font-seasons font-bold opacity-60 border-b border-rich-green/10 pb-2">
+                                        {{ category.name }}
+                                    </h3>
+
+                                    <div class="space-y-6">
+                                        {% for dish in activeDishes %}
+                                            <div class="group cursor-default">
+                                                {# Nom du plat #}
+                                                <div class="font-seasons text-xl md:text-2xl uppercase group-hover:text-logo-rose transition-colors duration-300">
+                                                    {{ dish.name }}
+                                                </div>
+
+                                                {# Ligne Description --- Pointillés --- Prix #}
+                                                <div class="flex items-baseline w-full gap-2 mt-1">
+                                                    {% if dish.description %}
+                                                        <span class="text-sm italic font-balto opacity-70 leading-tight shrink-0">
+                                                {{ dish.description|striptags }}
+                                            </span>
+                                                    {% endif %}
+
+                                                    {# Pointillés plus foncés en rich-green #}
+                                                    <div class="flex-grow border-b border-dotted border-rich-green/60 mb-1"></div>
+
+                                                    {# Prix sans bold #}
+                                                    <span class="font-balto text-lg opacity-90 whitespace-nowrap">
+                                            {{ dish.price|number_format(0, '.', ' ') }} Kč
+                                        </span>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    {# Boutons d'Action #}
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-8 mt-24">
+                        <a href="#stala-nabidka" class="btn-nav-contact !border-rich-green !text-rich-green hover:!bg-rich-green hover:!text-light-rose transition-all duration-500 uppercase">
+                            Stálá nabídka
+                        </a>
+                        <button onclick="openReservationModal()" class="btn-nav-contact !border-rich-green !text-rich-green hover:!bg-rich-green hover:!text-light-rose transition-all duration-500 uppercase">
+                            Rezervovat stůl
+                        </button>
+                    </div>
+                </div>
+            </section>
+
             <section id="restauraci" class="bg-rich-green/80">O restauraci y a un backgroun different</section>
             <section id="recenze" class="bg-rich-green/90 h-full">recenze</section>
             <section id="contact" class="bg-rich-green">heure d'ouverture et kontakt</section>

@@ -78,10 +78,11 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Restaurant Menu');
 
-        yield MenuItem::linkToCrud('Categories', 'fa fa-tags', Category::class)
+        // Menu pour les catégories (Předkrmy, Hlavní chody...)
+        yield MenuItem::linkToCrud('Kategorie', 'fa fa-tags', Category::class)
             ->setController(CategoryCrudController::class);
 
-        yield MenuItem::linkToCrud('Dishes', 'fa fa-utensils', Dish::class)
+        yield MenuItem::linkToCrud('Jídelní lístek', 'fa fa-utensils', Dish::class)
             ->setController(DishCrudController::class);
 
         // (Polední menu)
@@ -102,6 +103,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Opening Hours', 'fa fa-clock', OpeningHour::class)
             ->setController(OpeningHourCrudController::class);
 
+        //Settings
         yield MenuItem::section('Settings');
         yield MenuItem::linkToCrud('Global Config', 'fa fa-cog', Configuration::class)
             ->setController(ConfigurationCrudController::class);
