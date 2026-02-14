@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Reservation;
+use App\Form\ReservationType;
 use App\Repository\CategoryRepository;
 use App\Repository\DailyMenuRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,4 +32,5 @@ final class MainController extends AbstractController
             'categories' => $categoryRepository->findBy([], ['position' => 'ASC']),
         ]);
     }
+
 }

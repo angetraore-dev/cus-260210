@@ -239,11 +239,13 @@
                 </div>
                 {# Conteneur parent pour le centrage horizontal #}
                 <div class="flex flex-row items-center justify-center gap-4 md:gap-8 w-full max-w-full">
-                    <a href="#reservation" class="btn-nav-contact whitespace-nowrap text-center text-xs md:text-sm">
-                        Rezervovat stůl
-                    </a>
+
                     <a href="#contact" class="btn-nav-contact whitespace-nowrap text-center text-xs md:text-sm">
                         Kde nás najdete
+                    </a>
+
+                    <a href="#reservovat-stul" class="btn-nav-contact whitespace-nowrap text-center text-xs md:text-sm">
+                        Rezervovat stůl
                     </a>
                 </div>
             </section>
@@ -318,6 +320,12 @@
 
         </div>
 
+
+        {# clean #}
+        <div id="reservation-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-rich-green/95 backdrop-blur-md px-4">
+            <div id="modal-content" class="w-full max-w-xl transform transition-all duration-500 scale-95 opacity-0">
+            </div>
+        </div>
 
     </main>
 

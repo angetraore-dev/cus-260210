@@ -1,0 +1,23 @@
+<div class="p-8 bg-rich-green border border-light-rose/20 relative">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-light-rose/50 hover:text-light-rose">✕</button>
+
+    <h2 class="text-3xl font-seasons text-logo-rose text-center mb-10 uppercase text-center">
+        Rezervovat stůl
+    </h2>
+
+    {{ form_start(form, {'action': path('app_reservation_submit'), 'attr': {'id': 'ajax-reservation-form'}}) }}
+    <div class="space-y-6">
+        {{ form_row(form.clientName) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.phone) }}
+
+        <div class="grid grid-cols-2 gap-4">
+            {{ form_row(form.guestCount) }}
+            {{ form_row(form.reservationAt) }}
+        </div>
+        <div class="flex justify-center pt-6">
+            <button type="submit" class="btn-nav-contact">Potvrdit rezervaci</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>
