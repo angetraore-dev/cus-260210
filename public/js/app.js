@@ -43,9 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Fermeture (en cliquant sur le fond)
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
+    //modal.addEventListener('click', (e) => {
+    //         if (e.target === modal) closeModal();
+    //     });
+
 
     async function openModal() {
         // Afficher le fond

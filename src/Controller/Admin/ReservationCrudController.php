@@ -21,10 +21,11 @@ class ReservationCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('guest_name', 'Customer'),
-            EmailField::new('guest_email', 'Email'),
-            IntegerField::new('nb_persons', 'Number of place settings'),
-            DateTimeField::new('reservation_date', 'Date and Time'),
+            TextField::new('clientName', 'Customer'),
+            EmailField::new('email', 'Email'),
+            IntegerField::new('phone', 'Phone Number'),
+            IntegerField::new('guestCount', 'Number of place settings'),
+            DateTimeField::new('reservationAt', 'Date and Time'),
             ChoiceField::new('status', 'Status')
                 ->setChoices([
                     'Pending' => ReservationStatus::PENDING,
@@ -36,6 +37,7 @@ class ReservationCrudController extends AbstractCrudController
                     ReservationStatus::CONFIRMED->value => 'success',
                     ReservationStatus::CANCELLED->value => 'danger',
                 ]),
+            DateTimeField::new('createdAt', 'Vytvořeno')->hideOnForm(),
         ];
     }
 }

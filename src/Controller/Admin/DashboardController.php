@@ -8,6 +8,8 @@ use App\Entity\DailyMenu;
 use App\Entity\Dish;
 use App\Entity\OpeningHour;
 use App\Entity\Reservation;
+use App\Enum\ReservationStatus;
+use App\Repository\ReservationRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\Routing\Attribute\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
@@ -19,6 +21,12 @@ use Symfony\Component\HttpFoundation\Response;
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {
+    private ReservationRepository $reservationRepository;
+    public function __construct(ReservationRepository $reservationRepository)
+    {
+        $this->reservationRepository = $reservationRepository;
+
+    }
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
@@ -57,11 +65,15 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Cus 260210');
+            ->setTitle('AUREA');
     }
 
     public function configureMenuItems(): iterable
     {
+        $pendindReservation = $this->reservationRepository->count([
+            'status' => ReservationStatus::PENDING
+        ]);
+
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
         yield MenuItem::section('Restaurant Menu');
@@ -80,10 +92,13 @@ class DashboardController extends AbstractDashboardController
         //Management: Reservation and Opening Hours and configuration_user
         yield MenuItem::section('Management');
 
-        yield MenuItem::linkToCrud('Reservations', 'fa fa-calendar-check', Reservation::class)
-            ->setController(ReservationCrudController::class)
-            ->setBadge(5, 'danger')
-        ;
+        $menuItem =  MenuItem::linkToCrud('Rezervace', 'fa fa-calendar-check', Reservation::class)
+            ->setController(ReservationCrudController::class);
+        if ($pendindReservation > 0){
+            $menuItem->setBadge($pendindReservation, 'danger');
+        }
+        yield $menuItem;
+
         yield MenuItem::linkToCrud('Opening Hours', 'fa fa-clock', OpeningHour::class)
             ->setController(OpeningHourCrudController::class);
 
