@@ -131,52 +131,56 @@
                 </div>
             </nav>
 
-            {# Hero  bg-rich-green #}
-            <section id="home" class="relative min-h-auto w-full flex flex-col justify-center overflow-hidden">
-                <div class="grid grid-cols-1 md:grid-cols-4 w-full items-center px-4 md:px-10">
 
-                    {# Colonne GAUCHE : On ajoute 'self-center' pour qu'elle ne s'étire pas verticalement #}
-                    <div class="hidden md:flex justify-start self-center">
-                        <div class="align-self-center aspect-[3/5] w-full max-w-[350px] overflow-hidden shadow-2xl transition-transform duration-700 hover:scale-105">
-                            <img src="./images/hero-left.jpg" class="w-full object-cover grayscale-[20%] hover:grayscale-0 transition-all">
+            {# Hero  bg-rich-green #}
+            <section id="home" class="relative w-full flex flex-col justify-center overflow-hidden">
+
+                <div class="flex flex-col md:flex-row w-full items-stretch px-4 md:px-10">
+
+                    {# Colonne GAUCHE - S'étire sur toute la hauteur du parent #}
+                    <div class="hidden md:flex md:w-1/4 justify-start">
+                        <div class="self-center w-full max-w-[350px] overflow-hidden shadow-2xl transition-transform duration-700 hover:scale-105">
+                            <img src="./images/hero-left.jpg" class="w-full h-full object-cover">
                         </div>
                     </div>
 
-                    {# Colonne CENTRALE #}
-                    <div class="col-span-1 md:col-span-2 flex flex-col items-center text-center space-y-10 z-10">
+                    {# Bloc CENTRAL - C'est lui qui définit la hauteur du parent #}
+                    <div class="flex-1 flex flex-col items-center text-center space-y-10 z-10 px-4 py-10">
                         <div class="animate-fade-in">
-                            <h1 class="text-6xl md:text-8xl lg:text-[120px] font-seasons !leading-[0.8] text-light-rose uppercase">
+                            <h1 class="text-6xl md:text-8xl lg:text-[120px] font-seasons !leading-[0.8] text-logo-rose uppercase">
                                 <span class="ml-4 md:ml-12">AUREA</span>
                             </h1>
                             <p class="uppercase tracking-[0.6em] text-[10px] md:text-sm text-dark-rose mb-4">Restaurant</p>
-
                             <p class="font-balto text-sm md:text-base text-light-rose/70 max-w-md mx-auto mt-8 leading-relaxed italic">
-                                Expérience gastronomique unique au cœur de la ville, <br> où chaque saison raconte une nouvelle histoire.
+                                Expérience gastronomique unique au cœur de la ville.
                             </p>
                         </div>
 
-                        <div class="flex flex-col md:flex-row gap-6 mt-4">
-                            <a href="#recenze" class="btn-nav-contact">Rezervovate stul</a>
+                        {# Boutons #}
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <a href="#recenze" class="btn-nav-contact">Rezervovat stůl</a>
                             <a href="#contact" class="btn-nav-contact">Kristie Albatross</a>
                         </div>
 
-                        <div class="mt-4">
-                            <a href="#two-btn" class="animate-bounce inline-block">
-                                <svg id="Component_3_1" xmlns="http://www.w3.org/2000/svg" width="60" height="28" viewBox="0 0 72.142 34.583">
-                                    <path id="Path_93" d="M0,0,23.639,36.07,0,72.142,34.583,36.07Z" transform="translate(72.142) rotate(90)" fill="#dcb4a2"/>
-                                </svg>
-                            </a>
+                    </div>
+
+                    {# Colonne DROITE - S'étire aussi #}
+                    <div class="hidden md:flex md:w-1/4 justify-end">
+                        <div class="self-center w-full max-w-[350px] overflow-hidden shadow-2xl transition-transform duration-700 hover:scale-105">
+                            <img src="./images/hero-right.jpg" class="w-full h-full object-cover">
                         </div>
                     </div>
 
-                    {# Colonne DROITE : On ajoute 'self-center' ici aussi #}
-                    <div class="hidden md:flex justify-end self-center">
-                        <div class="aspect-[3/5] w-full max-w-[350px] overflow-hidden shadow-2xl transition-transform duration-700 hover:scale-105">
-                            <img src="./images/hero-right.jpg" class="w-full object-cover grayscale-[20%] hover:grayscale-0 transition-all">
-                        </div>
-                    </div>
+                    {# fin des trois colonnes #}
                 </div>
 
+                <div class="w-full mt-4 text-center justify-center">
+                    <a href="#two-btn" class="animate-bounce inline-block">
+                        <svg id="Component_3_1" xmlns="http://www.w3.org/2000/svg" width="60" height="28" viewBox="0 0 72.142 34.583">
+                            <path id="Path_93" d="M0,0,23.639,36.07,0,72.142,34.583,36.07Z" transform="translate(72.142) rotate(90)" fill="#dcb4a2"/>
+                        </svg>
+                    </a>
+                </div>
 
             </section>
 
@@ -234,17 +238,14 @@
                     {% endfor %}
                 </div>
                 {# Conteneur parent pour le centrage horizontal #}
-                <section id="two-btn" class="w-full flex justify-center py-12">
-                    {# Le bloc des boutons #}
-                    <div class="flex flex-col items-center md:flex-row gap-8">
-                        <a href="#reservation" class="btn-nav-contact">
-                            Rezervovat stůl
-                        </a>
-                        <a href="#contact" class="btn-nav-contact">
-                            Kde nás najdete
-                        </a>
-                    </div>
-                </section>
+                <div class="flex flex-row items-center justify-center gap-4 md:gap-8 w-full max-w-full">
+                    <a href="#reservation" class="btn-nav-contact whitespace-nowrap text-center text-xs md:text-sm">
+                        Rezervovat stůl
+                    </a>
+                    <a href="#contact" class="btn-nav-contact whitespace-nowrap text-center text-xs md:text-sm">
+                        Kde nás najdete
+                    </a>
+                </div>
             </section>
 
 
