@@ -438,7 +438,7 @@
             </section>
 
             {# Galerie #}
-            <section id="galerie" class="py-20 text-light-rose">
+            <section id="gallery" class="py-20 text-light-rose">
                 <div class="max-w-6xl mx-auto px-6 md:px-12">
 
                     {# Titre #}
@@ -766,27 +766,32 @@
             </section>
 
 
-            {# --- PARTENAIRE ALBATROSS (Avant le Footer) --- #}
-            <section class="py-20 bg-rich-green border-t border-light-rose/10 text-center">
-                <p class="uppercase tracking-[0.3em] text-[10px] opacity-50 mb-8">Navštivte naše golfové hřiště</p>
-                <a href="https://albatross.cz/cs/" target="_blank" rel="noopener" class="btn-aurea !text-sm">
-                    Hřiště Albatross Website
-                </a>
+            {# --- Map --- #}
+            <section class="bg-rich-green border-t border-light-rose/10 text-center">
+                DISPLAY MAP HERE
             </section>
 
             {# --- FOOTER --- #}
-            <footer class="bg-footer-dark py-20 px-12 border-t border-white/5">
-                <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-10">
-                    <div class="footer-text-left text-[15px] leading-relaxed">
-                        <p class="font-bold mb-2 uppercase tracking-widest text-light-rose">Smart Catering s.r.o.</p>
-                        IČ 24404608 | DIČ CZ24404608<br>
-                        Křižovnická 86/6 Praha 11000
+            <footer class="bg-footer-dark py-10 px-6 md:px-12">
+                <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-end gap-8">
+
+                    {# LEFT SIDE: Informations légales #}
+                    <div class="text-[#709073] font-balto text-[10px] uppercase tracking-widest leading-relaxed">
+                        <p class="mb-1 font-bold opacity-80">Smart Catering s.r.o.</p>
+                        <p>IČ 24404608</p>
+                        <p>DIČ CZ24404608</p>
+                        <p>Křižovnická 86/6</p>
+                        <p>Praha 11000</p>
                     </div>
 
-                    <div class="footer-text-right text-[15px] text-right opacity-60">
+                    {# RIGHT SIDE: Crédits #}
+                    <div class="text-[#506A52] font-balto text-[10px] uppercase tracking-widest text-right">
                         <p>Website design and programming</p>
-                        <p class="font-bold uppercase tracking-widest text-white">Toli Code & Design</p>
+                        <a href="https://tolicode.com" target="_blank" class="hover:text-light-rose transition-colors duration-300">
+                            Toli Code & Design.
+                        </a>
                     </div>
+
                 </div>
             </footer>
 
