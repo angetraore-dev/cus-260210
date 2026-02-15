@@ -124,6 +124,34 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     });
 
+    //Galerie
+    // Initialisation de la Lightbox avec effet Fade
+    const lightbox = GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: true,
+        openEffect: 'fade', // Effet d'ouverture demandé
+        closeEffect: 'fade',
+    });
+
+    // Système Load More
+    document.getElementById('load-more-btn')?.addEventListener('click', function() {
+        const hiddenImages = document.querySelectorAll('#gallery-grid .hidden');
+        const imagesToDisplay = 12; // 3 lignes de 4 images
+
+        hiddenImages.forEach((img, index) => {
+            if (index < imagesToDisplay) {
+                img.classList.remove('hidden');
+                img.classList.add('animate-fade-in-galerie');
+            }
+        });
+
+        // Cacher le bouton s'il n'y a plus rien à charger
+        if (document.querySelectorAll('#gallery-grid .hidden').length === 0) {
+            this.style.display = 'none';
+        }
+    });
 
 });
 

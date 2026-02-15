@@ -7,6 +7,7 @@ use App\Form\ReservationType;
 use App\Repository\CategoryRepository;
 use App\Repository\DailyMenuRepository;
 use App\Repository\DishRepository;
+use App\Repository\GalleryRepository;
 use App\Repository\ReviewRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,8 @@ final class MainController extends AbstractController
     public function index(
         DailyMenuRepository $dailyMenuRepository,
         CategoryRepository $categoryRepository,
-        ReviewRepository $reviewRepository
+        ReviewRepository $reviewRepository,
+        GalleryRepository $galleryRepository,
     ): Response
     {
         $today = new  \DateTime();
@@ -40,7 +42,7 @@ final class MainController extends AbstractController
             ->where('d.isAvaible = :active') // On ne prend que les plats dispos
             ->setParameter('active', true)
             ->orderBy('c.position', 'ASC')
-            ->addOrderBy('d.name', 'ASC')
+            //->addOrderBy('d.name', 'ASC')
             ->getQuery()
             ->getResult()
         ;
@@ -48,10 +50,14 @@ final class MainController extends AbstractController
         //recenze
         $reviews = $reviewRepository->findBy(['isAvaible' => true]);
 
+        //Galerie
+        $galeries = $galleryRepository->findBy([], ['priority' => 'DESC']);
+
         return $this->render('main/index.html.twig', [
             'currentMenu' => $currentMenu,
             'categories' => $categories,
             'reviews' => $reviews,
+            'galleries' => $galeries
         ]);
     }
 

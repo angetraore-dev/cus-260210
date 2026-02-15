@@ -279,6 +279,7 @@
                                     </h3>
 
                                     <div class="space-y-6">
+                                        {{ dump(activeDishes) }}
                                         {% for dish in activeDishes %}
                                             <div class="group cursor-default">
                                                 {# Nom du plat #}
@@ -323,7 +324,7 @@
             </section>
 
             {# o-restauraci #}
-            <section id="o-restauraci" class="py-20 bg-rich-green text-light-rose">
+            <section id="restauraci" class="py-20 bg-rich-green text-light-rose">
                 <div class="max-w-4xl mx-auto px-6 md:px-12">
 
                     {# 1. Titre de la section (Même style que Speciální Nabídka) #}
@@ -365,7 +366,7 @@
                             </p>
 
                             <div class="text-center pt-4">
-                                <a href="#kontakt" class="btn-nav-contact !border-light-rose !text-light-rose hover:!bg-light-rose hover:!text-rich-green transition-all duration-500 uppercase">
+                                <a href="#contact" class="btn-nav-contact !border-light-rose !text-light-rose hover:!bg-light-rose hover:!text-rich-green transition-all duration-500 uppercase">
                                     Kontaktujte nás
                                 </a>
                             </div>
@@ -433,6 +434,48 @@
 
                 </div>
             </section>
+
+            {# Galerie #}
+            <section id="galerie" class="py-20 text-light-rose">
+                <div class="max-w-6xl mx-auto px-6 md:px-12">
+
+                    {# Titre #}
+                    <div class="text-center mb-14">
+                        <h2 class="font-seasons text-4xl md:text-5xl uppercase tracking-[0.3em] mb-2">Fotogalerie</h2>
+                        <div class="w-20 h-[1px] bg-light-rose mx-auto mt-6 opacity-30"></div>
+                    </div>
+
+                    {# Grille Masonry/Square #}
+                    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {% for image in galleries %}
+                            <a href="{{ asset('uploads/gallery/' ~ image.imageName) }}"
+                               class="glightbox group relative overflow-hidden aspect-square border border-rich-green/5 {{ loop.index > 12 ? 'hidden' : 'block animate-fade-in-galerie' }}"
+                               data-gallery="restaurace">
+
+                                <img src="{{ asset('uploads/gallery/' ~ image.imageName) }}"
+                                     alt="{{ image.title|default('Aurea') }}"
+                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+
+                                <div class="absolute inset-0 bg-rich-green/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                                    <div class="w-8 h-8 border border-light-rose/50 rounded-full flex items-center justify-center">
+                                        <span class="text-light-rose text-xl font-light">+</span>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+
+                    {# Bouton Load More #}
+                    {% if galleries|length > 12 %}
+                        <div class="text-center mt-16">
+                            <button id="load-more-btn" class="btn-nav-contact !border-rich-green !text-rich-green hover:!bg-light-rose hover:!text-rich-green transition-all duration-500 uppercase">
+                                Načíst další
+                            </button>
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+
 
             <section id="contact" class="bg-rich-green">heure d'ouverture et kontakt</section>
             <section id="map">affichage de map</section>

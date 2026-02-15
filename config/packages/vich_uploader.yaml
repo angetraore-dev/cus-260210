@@ -1,0 +1,8 @@
+vich_uploader:
+    db_driver: orm
+    mappings:
+        gallery_images:
+            uri_prefix: /uploads/gallery
+            upload_destination: '%kernel.project_dir%/public/uploads/gallery'
+            # Utilise cette syntaxe à la place :
+            namer: Vich\UploaderBundle\Naming\UniqidNamer

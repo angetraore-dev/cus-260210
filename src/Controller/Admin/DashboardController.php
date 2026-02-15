@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Configuration;
 use App\Entity\DailyMenu;
 use App\Entity\Dish;
+use App\Entity\Gallery;
 use App\Entity\OpeningHour;
 use App\Entity\Reservation;
 use App\Entity\Review;
@@ -112,6 +113,7 @@ class DashboardController extends AbstractDashboardController
 
         //Settings
         yield MenuItem::section('Settings');
+        yield MenuItem::linkToCrud('Galerie', 'fas fa-images', Gallery::class);
         yield MenuItem::linkToCrud('Global Config', 'fa fa-cog', Configuration::class)
             ->setController(ConfigurationCrudController::class)
         ;

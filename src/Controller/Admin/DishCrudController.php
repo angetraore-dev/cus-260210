@@ -21,9 +21,9 @@ class DishCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        //            TextField::new('name', 'Název pokrmu'),
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name', 'Název pokrmu'),
             TextEditorField::new('description', 'Popis složení'),
             MoneyField::new('price', 'Cena')
                 ->setCurrency("CZK")
