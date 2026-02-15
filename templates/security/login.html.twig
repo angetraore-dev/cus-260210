@@ -1,5 +1,63 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}AUREA - Administration{% endblock %}
+
+{% block body %}
+    <section class="min-h-screen bg-rich-green flex items-center justify-center px-6">
+        <div class="max-w-md w-full">
+
+            {# Logo ou Titre #}
+            <div class="text-center mb-12">
+                <h1 class="font-seasons text-4xl text-light-rose tracking-widest uppercase">Aurea</h1>
+                <p class="font-balto text-[10px] text-[#709073] uppercase tracking-[0.4em] mt-4">Administration Panel</p>
+            </div>
+
+            <form method="post" class="space-y-6">
+                {% if error %}
+                    <div class="bg-red-900/30 border border-red-500/50 text-red-200 text-[10px] uppercase tracking-widest p-4 text-center mb-6 font-balto">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+
+                {# Champ Email #}
+                <div class="relative group">
+                    <label for="inputEmail" class="font-balto text-[10px] text-[#709073] uppercase tracking-widest mb-2 block">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                           class="w-full bg-transparent border-b border-[#709073]/30 text-white font-balto py-2 focus:outline-none focus:border-light-rose transition-colors duration-500"
+                           autocomplete="email" required autofocus>
+                </div>
+
+                {# Champ Password #}
+                <div class="relative group">
+                    <label for="inputPassword" class="font-balto text-[10px] text-[#709073] uppercase tracking-widest mb-2 block">Heslo</label>
+                    <input type="password" name="password" id="inputPassword"
+                           class="w-full bg-transparent border-b border-[#709073]/30 text-white font-balto py-2 focus:outline-none focus:border-light-rose transition-colors duration-500"
+                           autocomplete="current-password" required>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                {# Bouton de connexion - Style identique à tes boutons nav #}
+                <div class="pt-6">
+                    <button type="submit" class="w-full btn-nav-contact text-center justify-center">
+                        Přihlásit se
+                    </button>
+                </div>
+            </form>
+
+            {# Lien retour vers le site #}
+            <div class="mt-12 text-center">
+                <a href="{{ path('app_main') }}" class="font-balto text-[10px] text-[#506A52] uppercase tracking-widest hover:text-light-rose transition-colors">
+                    ← zpět sur le site
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{#
+{% extends 'base.html.twig' %}
+
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
@@ -32,3 +90,5 @@
     </button>
 </form>
 {% endblock %}
+
+#}
