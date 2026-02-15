@@ -121,7 +121,7 @@
 
                         <a href="#poldeni-menu" class="nav-link text-[10px] md:text-xs tracking-[0.2em]">POLEDNÍ MENU</a>
                         <a href="#stala-nabidka" class="nav-link text-[10px] md:text-xs tracking-[0.2em]">Speciální nabídka</a>
-                        <a href="#restauraci" class="nav-link text-[10px] md:text-xs tracking-[0.2em]">restauraci</a>
+                        <a href="#restauraci" class="nav-link text-[10px] md:text-xs tracking-[0.2em]">O restauraci</a>
                         <a href="#recenze" class="nav-link text-[10px] md:text-xs tracking-[0.2em]">recenze</a>
                         <a href="#gallery" class="nav-link text-[10px] md:text-xs tracking-[0.2em]">Galerie</a>
 
@@ -130,7 +130,6 @@
                     </div>
                 </div>
             </nav>
-
 
             {# Hero  bg-rich-green #}
             <section id="home" class="relative w-full flex flex-col justify-center overflow-hidden">
@@ -253,74 +252,6 @@
                 </div>
             </section>
 
-            {# Section: SPECIÁLNÍ STÁLÁ NABÍDKA (offre speciale) #}
-
-            {# SECTION : STÁLÁ NABÍDKA #}
-            <section id="stala-nabidka" class="py-24 bg-light-rose text-rich-green">
-                <div class="container mx-auto px-6 max-w-4xl">
-
-                    {# En-tête de la section #}
-                    <div class="text-center mb-20">
-                        <h2 class="text-5xl md:text-7xl font-seasons uppercase mb-2">Stálá Nabídka</h2>
-                        <p class="text-2xl font-seasons italic opacity-70">Jarní menu</p>
-                    </div>
-
-                    {# Liste des catégories et plats #}
-                    <div class="space-y-20">
-
-                        {% if categories|length > 0 %}
-                            {% for category in categories %}
-                                {% if category.dishes|length > 0 %}
-                                    <div class="animate-on-scroll">
-                                        {# Nom de la catégorie #}
-                                        <h3 class="text-[10px] uppercase tracking-[0.5em] mb-10 font-bold opacity-50 border-b border-rich-green/10 pb-2">
-                                            {{ category.name }}
-                                        </h3>
-
-                                        {# Grille des plats #}
-                                        <div class="grid gap-y-12">
-                                            {% for dish in category.dishes %}
-                                                <div class="group">
-                                                    {# Nom + Prix #}
-                                                    <div class="flex justify-between items-end border-b border-rich-green/20 pb-1">
-                                        <span class="font-seasons text-xl md:text-2xl uppercase group-hover:text-logo-rose transition-colors duration-300">
-                                            {{ dish.name }}
-                                        </span>
-                                                        <span class="font-balto font-bold text-lg ml-4 whitespace-nowrap">
-                                            {{ dish.price|number_format(0, '.', ' ') }} Kč
-                                        </span>
-                                                    </div>
-
-                                                    {# Description #}
-                                                    {% if dish.description %}
-                                                        <p class="text-sm italic opacity-60 font-balto mt-3 leading-relaxed max-w-2xl">
-                                                            {{ dish.description|raw }}
-                                                        </p>
-                                                    {% endif %}
-                                                </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-
-                        {% else %}
-                            <p class="text-sm font-seasons text-center">V tuto chvíli není k dispozici žádné menu</p>
-                        {% endif %}
-                    </div>
-
-                    {# Actions finales #}
-                    <div class="flex flex-col md:flex-row justify-center items-center gap-8 mt-24">
-                        <a href="#" class="btn-nav-contact !border-rich-green !text-rich-green hover:!bg-rich-green hover:!text-light-rose transition-all duration-500">
-                            Stálá nabídka
-                        </a>
-                        <button onclick="openReservationModal()" class="btn-nav-contact !border-rich-green !text-rich-green hover:!bg-rich-green hover:!text-light-rose transition-all duration-500 uppercase">
-                            Rezervovat stůl
-                        </button>
-                    </div>
-
-                </div>
-            </section>
             {# stala-nabidka #}
             <section id="stala-nabidka" class="py-20 bg-light-rose text-rich-green">
                 <div class="max-w-4xl mx-auto px-6 md:px-12">
@@ -391,7 +322,59 @@
                 </div>
             </section>
 
-            <section id="restauraci" class="bg-rich-green/80">O restauraci y a un backgroun different</section>
+            {# o-restauraci #}
+            <section id="o-restauraci" class="py-24 bg-rich-green text-light-rose">
+                <div class="max-w-4xl mx-auto px-6 md:px-12">
+
+                    {# 1. Titre de la section (Même style que Speciální Nabídka) #}
+                    <div class="text-center mb-16">
+                        <h2 class="font-seasons text-4xl md:text-5xl uppercase tracking-[0.3em] mb-2">
+                            O Restauraci
+                        </h2>
+                        <div class="w-20 h-[1px] bg-light-rose mx-auto mt-6 opacity-40"></div>
+                    </div>
+
+                    {# 2. Conteneur principal centré (Structure 2 colonnes puis 1 colonne) #}
+                    <div class="space-y-12">
+
+                        {# Bloc du haut : 2 colonnes côte à côte #}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                            {# Colonne Image #}
+                            <div class="aspect-square md:aspect-auto overflow-hidden">
+                                <img src="images/web_aurea/photos/fotka_o_restauraci.jpg"
+                                     alt="O restauraci Aurea"
+                                     class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                            </div>
+
+                            {# Colonne Texte (Même taille que l'image) #}
+                            <div class="flex flex-col justify-center border border-light-rose/20 p-8 md:p-12">
+                                <h3 class="text-lg uppercase tracking-[0.5em] mb-6 font-seasons font-bold opacity-80 border-b border-light-rose/10 pb-2">
+                                    Náš Příběh
+                                </h3>
+                                <p class="font-balto text-sm md:text-base leading-relaxed opacity-70 italic">
+                                    V srdci naší kuchyně tluče vášeň pro poctivé řemeslo. Každý den vybíráme ty nejlepší suroviny od lokálních dodavatelů, abychom vám přinesli autentický gastronomický zážitek v moderním pojetí.
+                                </p>
+                            </div>
+                        </div>
+
+                        {# Bloc du bas : Texte plein et Bouton centré  max-w-2xl mx-auto space-y-8 #}
+                        <div class="max-w-4xl mx-auto space-y-10">
+                            <p class="text-start font-balto text-base md:text-lg leading-relaxed opacity-80">
+                                Aurea je místem setkávání, oslav a nezapomenutelných chutí. Přijďte se přesvědčit o naší pohostinnosti a nechte se hýčkat v elegantním prostředí našeho interiéru.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam debitis dolore dolorum facere, hic illo ipsa odit! Aut dolores omnis provident quibusdam totam! Accusamus accusantium atque illum, quaerat quam quos.
+                            </p>
+
+                            <div class="text-center pt-4">
+                                <a href="#kontakt" class="btn-nav-contact !border-light-rose !text-light-rose hover:!bg-light-rose hover:!text-rich-green transition-all duration-500 uppercase">
+                                    Kontaktujte nás
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
             <section id="recenze" class="bg-rich-green/90 h-full">recenze</section>
             <section id="contact" class="bg-rich-green">heure d'ouverture et kontakt</section>
             <section id="map">affichage de map</section>
