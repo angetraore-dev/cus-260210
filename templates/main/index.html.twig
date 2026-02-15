@@ -209,7 +209,9 @@
 
                     {% for item in currentMenu.dailyMenuItems %}
                         <div class="group flex flex-col mb-10 transition-all duration-500 ease-in-out hover:translate-x-2 animate-fade-in">
-
+                            <h3 class="font-seasons text-lg md:text-xl uppercase tracking-widest text-light-rose mb-1 transition-colors duration-500 group-hover:text-dark-rose">
+                                {{ item.title }}
+                            </h3>
                             {# 1. TITRE (Au-dessus)
                             <h3 class="font-seasons text-lg md:text-xl uppercase tracking-widest text-light-rose mb-1 transition-colors duration-500 group-hover:text-dark-rose">
                                 {{ item.title }}
@@ -279,14 +281,14 @@
                                     </h3>
 
                                     <div class="space-y-6">
-                                        {{ dump(activeDishes) }}
+
                                         {% for dish in activeDishes %}
                                             <div class="group cursor-default">
-                                                {# Nom du plat #}
+                                                {# Nom du plat
                                                 <div class="font-seasons text-xl md:text-2xl uppercase group-hover:text-logo-rose transition-colors duration-300">
                                                     {{ dish.name }}
                                                 </div>
-
+                                                #}
                                                 {# Ligne Description --- Pointillés --- Prix #}
                                                 <div class="flex items-baseline w-full gap-2 mt-1">
                                                     {% if dish.description %}
@@ -441,7 +443,7 @@
 
                     {# Titre #}
                     <div class="text-center mb-14">
-                        <h2 class="font-seasons text-4xl md:text-5xl uppercase tracking-[0.3em] mb-2">Fotogalerie</h2>
+                        <h2 class="font-seasons text-4xl md:text-5xl uppercase tracking-[0.3em] mb-2">Galerie</h2>
                         <div class="w-20 h-[1px] bg-light-rose mx-auto mt-6 opacity-30"></div>
                     </div>
 
@@ -476,9 +478,293 @@
                 </div>
             </section>
 
+            {# kontakt-info #}
+            <section id="kontakt-info" class="py-20 text-light-rose">
+                <div class="max-w-6xl mx-auto px-6 md:px-12">
 
-            <section id="contact" class="bg-rich-green">heure d'ouverture et kontakt</section>
-            <section id="map">affichage de map</section>
+                    {# --- PREMIÈRE ROW : OTEVÍRACÍ DOBA --- #}
+                    <div class="mb-16">
+                        {# Titre centré #}
+                        <div class="text-center mb-16">
+                            <h2 class="font-seasons text-4xl md:text-5xl uppercase tracking-[0.3em]">
+                                Otevírací doba
+                            </h2>
+                            <div class="w-20 h-[1px] bg-light-rose mx-auto mt-6 opacity-30"></div>
+                        </div>
+
+                        {#  (Horaires | Image) #}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
+
+                            {# Gauche : Boucle sur les horaires #}
+                            <div class="space-y-4 bg-white/5 p-8 md:p-12 border border-light-rose/10">
+                                {% for hour in openingHours %}
+                                    <div class="flex justify-between items-center border-b border-light-rose/5 pb-2">
+                                        {# Affiche le jour #}
+                                        <span class="font-balto uppercase tracking-widest text-sm">
+                                            {{ hour.day }}
+                                        </span>
+
+                                        <span class="font-seasons italic text-lg">
+                                            {% if hour.isClosed %}
+                                                <span class="opacity-50 uppercase text-xs">Zavřeno</span>
+                                            {% else %}
+                                                {# Formatage des objets Time #}
+                                                {{ hour.getOpeningTime|date('H:i') }} - {{ hour.getClosingTime|date('H:i') }}
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                            {# Droite : Image de présentation #}
+                            <div class="h-full min-h-[300px] overflow-hidden">
+                                <img src="./images/web_aurea/photos/fotka_oteviraci_doba.jpg"
+                                     alt="Aurea Interior"
+                                     class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700">
+                            </div>
+                        </div>
+
+                        {# Bouton centré en dessous #}
+                        <div class="text-center mt-12">
+                            <a href="#reservovat-stul" class="btn-nav-contact">Rezervovat stůl</a>
+                        </div>
+                    </div>
+                </div>
+
+                {# Contact #}
+                <section id="contact" class="relative text-light-rose py-16 overflow-hidden">
+                    <div class="container mx-auto px-6 relative z-10">
+                        <h2 class="font-seasons text-center text-5xl mb-16 tracking-widest uppercase">Kontakt</h2>
+                        {# Conteneur  #}
+                        <div class="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-0 max-w-6xl mx-auto">
+
+                            {# COLONNE GAUCHE (Infos) #}
+                            <div class="w-full md:w-1/2 flex flex-col items-center md:items-end space-y-10 md:pr-16 md:border-r border-light-rose/20">
+
+                                {# ADRESSE #}
+                                <div class="flex items-center md:flex-row-reverse gap-5 group">
+                                    {# SVG ICON #}
+                                    <div class="w-12 h-12 flex-shrink-0 transition-transform duration-500 group-hover:scale-110">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 65 64">
+                                            <defs>
+                                                <clipPath id="clip-path-addr">
+                                                    <rect width="23.615" height="36.903" fill="#dcb4a2"/>
+                                                </clipPath>
+                                            </defs>
+                                            <g transform="translate(-447 -4871)">
+                                                <g transform="translate(849 -473)">
+                                                    <g transform="translate(-402 5344)" fill="none" stroke="#dcb4a2" stroke-width="1">
+                                                        <ellipse cx="32.5" cy="32" rx="32.5" ry="32" stroke="none"/>
+                                                        <ellipse cx="32.5" cy="32" rx="32" ry="31.5" fill="none"/>
+                                                    </g>
+                                                </g>
+                                                <g transform="translate(467.693 4885.652)">
+                                                    <g clip-path="url(#clip-path-addr)">
+                                                        <path d="M17.538,31.917a23.951,23.951,0,0,1-4.969,4.823.618.618,0,0,1-.8.03,30.133,30.133,0,0,1-6.912-7.235A27.994,27.994,0,0,1,.212,17.764,17.936,17.936,0,0,1,1.879,6.751,13.06,13.06,0,0,1,4.451,3.406,11.479,11.479,0,0,1,12.328,0,10.291,10.291,0,0,1,19.8,3.58,12.725,12.725,0,0,1,21.8,6.43c1.83,3.538,2.225,8.048,1.421,12.619a29.709,29.709,0,0,1-5.681,12.859ZM11.806,7.136c3.246,0,5.875,3.087,5.875,6.892s-2.632,6.892-5.875,6.892-5.875-3.084-5.875-6.892S8.56,7.136,11.806,7.136" fill="#dcb4a2" fill-rule="evenodd"/>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </div>
+
+                                    {# TEXT CONTENT #}
+                                    <div class="flex flex-col text-left md:text-right">
+                                        {# L'adresse devient le titre principal #}
+                                        <span class="font-seasons text-xl leading-tight">
+                                        {{ config.address ?? 'Adresa bude doplněna'|nl2br }}
+                                    </span>
+                                        <a href="{{ config.googleMapsLink ?? '#' }}" target="_blank" class="font-balto text-[10px] uppercase tracking-widest opacity-50 mt-1 hover:text-white hover:opacity-100 transition-all">
+                                            Zobrazit na mapě
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {# TELEFON #}
+                                <div class="flex items-center md:flex-row-reverse gap-5 group">
+                                    {# SVG ICON #}
+                                    <div class="w-12 h-12 flex-shrink-0 transition-transform duration-500 group-hover:rotate-12">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 65 64">
+                                            <g transform="translate(-686 -4871)">
+                                                <g transform="translate(1088 -473)">
+                                                    <g transform="translate(-402 5344)" fill="none" stroke="#dcb4a2" stroke-width="1">
+                                                        <ellipse cx="32.5" cy="32" rx="32.5" ry="32" stroke="none"/>
+                                                        <ellipse cx="32.5" cy="32" rx="32" ry="31.5" fill="none"/>
+                                                    </g>
+                                                </g>
+                                                <path d="M78.856,199.6a45.893,45.893,0,0,1-10.924-12.53,9.635,9.635,0,0,0,5.281-2.035c-1.453-10.047-9.431-11.259-9.431-11.259a9.59,9.59,0,0,0-3.182,7.8h-.042s1.54,18.622,22.256,26.68l.028-.094a9.578,9.578,0,0,0,8.267-1.756c-1.452-10.046-9.429-11.258-9.429-11.258A9.549,9.549,0,0,0,78.856,199.6Z" transform="translate(642.665 4711.874)" fill="#dcb4a2"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+
+                                    {# TEXT CONTENT #}
+                                    <div class="flex flex-col text-left md:text-right">
+                                        {# Le numéro de téléphone en grand #}
+                                        <span class="font-seasons text-xl leading-tight">
+                                        {{ config.phoneNumber ?? '--- --- ---' }}
+                                    </span>
+
+                                        {# Le lien d'appel en petit en dessous #}
+                                        <a href="tel:{{ config.phoneNumber ?? '' }}" class="font-balto text-[10px] uppercase tracking-widest opacity-50 mt-1 hover:text-white hover:opacity-100 transition-all">
+                                            Zavolejte nám
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {# MAIL #}
+                                <div class="flex items-center md:flex-row-reverse gap-5 group">
+                                    {# SVG ICON #}
+                                    <div class="w-12 h-12 flex-shrink-0 transition-transform duration-500 group-hover:scale-90">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 65 64">
+                                            <g transform="translate(402 -5344)">
+                                                <g transform="translate(-402 5344)" fill="none" stroke="#dcb4a2" stroke-width="1">
+                                                    <ellipse cx="32.5" cy="32" rx="32.5" ry="32" stroke="none"/>
+                                                    <ellipse cx="32.5" cy="32" rx="32" ry="31.5" fill="none"/>
+                                                </g>
+                                                <g transform="translate(-385.454 5366.085)">
+                                                    <path d="M420.52,85.091l-9.1-9.1v18.2Z" transform="translate(-411.422 -75.431)" fill="#dcb4a2"/>
+                                                    <path d="M421.213,87.477,411.694,97h11.2l3.921-3.921Z" transform="translate(-411.463 -77.166)" fill="#dcb4a2"/>
+                                                    <path d="M442.81,75.331H412.3l15.258,15.258Z" transform="translate(-411.554 -75.331)" fill="#dcb4a2"/>
+                                                    <path d="M447.354,94.686V76.1l-9.293,9.293Z" transform="translate(-415.446 -75.447)" fill="#dcb4a2"/>
+                                                    <path d="M436.348,87.813l-5.313,5.313,3.921,3.921h10.625Z" transform="translate(-414.385 -77.216)" fill="#dcb4a2"/>
+                                                    <path d="M428.8,94.071l.606.616.7-.616,3.921,3.921h-9.145Z" transform="translate(-413.455 -78.162)" fill="#dcb4a2"/>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </div>
+
+                                    {# TEXT CONTENT #}
+                                    <div class="flex flex-col text-left md:text-right">
+                                        {# L'email en grand #}
+                                        <span class="font-seasons text-xl leading-tight lowercase">
+                                        {{ config.contactEmail ?? 'info@studio.cz' }}
+                                    </span>
+
+                                        {# L'action en petit en dessous #}
+                                        <a href="mailto:{{ config.contactEmail ?? '' }}" class="font-balto text-[10px] uppercase tracking-widest opacity-50 mt-1 hover:text-white hover:opacity-100 transition-all">
+                                            Napište nám
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            {# --- COLONNE DROITE (Socials) --- #}
+                            <div class="w-full md:w-1/2 flex flex-col items-center md:items-start space-y-10 md:pl-16">
+
+                                {# INSTAGRAM #}
+                                <div class="flex items-center gap-5 group">
+                                    {# SVG ICON #}
+                                    <div class="w-12 h-12 flex-shrink-0 transition-transform duration-500 group-hover:scale-110">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 65 64">
+                                            <g transform="translate(-1164 -4871)">
+                                                <g transform="translate(1566 -473)">
+                                                    <g transform="translate(-402 5344)" fill="none" stroke="#dcb4a2" stroke-width="1">
+                                                        <ellipse cx="32.5" cy="32" rx="32.5" ry="32" stroke="none"/>
+                                                        <ellipse cx="32.5" cy="32" rx="32" ry="31.5" fill="none"/>
+                                                    </g>
+                                                </g>
+                                                <g transform="translate(191.528 4533.654)">
+                                                    <path d="M1012.724,384.848h-15.5a2.4,2.4,0,0,0-.26-.063,8.083,8.083,0,0,1-2.371-.66,8.457,8.457,0,0,1-4.889-5.88c-.094-.378-.156-.765-.233-1.148V361.6c.051-.276.1-.553.152-.828a8.565,8.565,0,0,1,8.448-6.921q6.9-.007,13.8.005a9.168,9.168,0,0,1,1.653.146,8.542,8.542,0,0,1,6.762,6.651,9.246,9.246,0,0,1,.18,1.83c.015,4.58,0,9.161.01,13.741a8.258,8.258,0,0,1-.732,3.52,8.439,8.439,0,0,1-5.873,4.875C1013.494,384.71,1013.107,384.771,1012.724,384.848Zm4.973-15.5h.012q0-3.376,0-6.751a6.338,6.338,0,0,0-.291-2.023,5.853,5.853,0,0,0-5.631-3.972c-4.542.026-9.084,0-13.626.02a6.834,6.834,0,0,0-1.958.293,5.78,5.78,0,0,0-3.977,5.614c.026,4.541,0,9.082.02,13.623a6.835,6.835,0,0,0,.293,1.958,5.784,5.784,0,0,0,5.615,3.977c4.542-.027,9.084-.01,13.626,0a5.67,5.67,0,0,0,2.767-.635,5.516,5.516,0,0,0,3.133-4.894C1017.751,374.155,1017.7,371.752,1017.7,369.35Z" fill="#dcb4a2"/>
+                                                    <path d="M1121.29,477.662a7.992,7.992,0,1,1-8.012,7.957A8.009,8.009,0,0,1,1121.29,477.662Zm5.2,7.982a5.221,5.221,0,1,0-5.219,5.23A5.206,5.206,0,0,0,1126.492,485.643Z" transform="translate(-116.3 -116.307)" fill="#dcb4a2"/>
+                                                    <path d="M1350.94,443.183a2.025,2.025,0,0,1-2.025-2.013,2.024,2.024,0,1,1,4.049,0A2.028,2.028,0,0,1,1350.94,443.183Z" transform="translate(-337.641 -80.126)" fill="#dcb4a2"/>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </div>
+
+                                    {# TEXT CONTENT #}
+                                    <div class="flex flex-col text-left">
+                                        {# Instagram en grand #}
+                                        <span class="font-seasons text-xl leading-tight">Instagram</span>
+
+                                        {# L'action en petit #}
+                                        <a href="{{ config.instagramLink ?? '#' }}" target="_blank" class="font-balto text-[10px] uppercase tracking-widest opacity-50 mt-1 hover:text-white hover:opacity-100 transition-all">
+                                            Sledujte nás
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {# FACEBOOK #}
+                                <div class="flex items-center gap-5 group">
+                                    {# SVG ICON #}
+                                    <div class="w-12 h-12 flex-shrink-0 transition-transform duration-500 group-hover:scale-110">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 65 64">
+                                            {# Le Cercle #}
+                                            <circle cx="32.5" cy="32" r="31.5" fill="none" stroke="#dcb4a2" stroke-width="1"/>
+
+                                            {# La lettre 'f' centrée #}
+                                            <text
+                                                x="50%"
+                                                y="52%"
+                                                text-anchor="middle"
+                                                dominant-baseline="middle"
+                                                fill="#dcb4a2"
+                                                font-size="38"
+                                                font-family="Balto-Medium, Balto"
+                                                font-weight="500"
+                                            >f</text>
+                                        </svg>
+                                    </div>
+
+                                    {# TEXT CONTENT #}
+                                    <div class="flex flex-col text-left">
+                                        <span class="font-seasons text-xl leading-tight">Facebook</span>
+                                        <a href="{{ config.facebookLink ?? '#' }}" target="_blank" class="font-balto text-[10px] uppercase tracking-widest opacity-50 mt-1 hover:text-white hover:opacity-100 transition-all">
+                                            Najdete nás
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {# LINKEDIN #}
+                                <div class="flex items-center gap-5 group">
+                                    {# SVG ICON #}
+                                    <div class="w-12 h-12 flex-shrink-0 transition-transform duration-500 group-hover:scale-110">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 65 64">
+                                            {# Le Cercle #}
+                                            <circle cx="32.5" cy="32" r="31.5" fill="none" stroke="#dcb4a2" stroke-width="1"/>
+
+                                            {# Le texte 'in' centré mathématiquement et optiquement #}
+                                            <text
+                                                x="50%"
+                                                y="48%"
+                                                text-anchor="middle"
+                                                dominant-baseline="middle"
+                                                fill="#dcb4a2"
+                                                font-size="30"
+                                                font-family="Balto-Medium, Balto"
+                                                font-weight="500"
+                                            >in</text>
+                                        </svg>
+                                    </div>
+
+                                    {# TEXT CONTENT #}
+                                    <div class="flex flex-col text-left">
+                                        <span class="font-seasons text-xl leading-tight">LinkedIn</span>
+                                        <a href="{{ config.linkedinLink ?? '#' }}" target="_blank" class="font-balto text-[10px] uppercase tracking-widest opacity-50 mt-1 hover:text-white hover:opacity-100 transition-all">
+                                            Propojte se
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        {# BOUTON FINAL IRIS ALBATROS #}
+                        <div class="flex justify-center mt-20">
+                            <a href="https://albatross.cz/cs/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn-nav-contact uppercase">
+                                Hřiště Albatross
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
 
             {# --- PARTENAIRE ALBATROSS (Avant le Footer) --- #}
             <section class="py-20 bg-rich-green border-t border-light-rose/10 text-center">

@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\CategoryRepository;
+use App\Repository\ConfigurationRepository;
 use App\Repository\DailyMenuRepository;
 use App\Repository\DishRepository;
 use App\Repository\GalleryRepository;
+use App\Repository\OpeningHourRepository;
 use App\Repository\ReviewRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +23,8 @@ final class MainController extends AbstractController
         CategoryRepository $categoryRepository,
         ReviewRepository $reviewRepository,
         GalleryRepository $galleryRepository,
+        OpeningHourRepository $openingHourRepository,
+        ConfigurationRepository $configurationRepository,
     ): Response
     {
         $today = new  \DateTime();
@@ -53,11 +57,16 @@ final class MainController extends AbstractController
         //Galerie
         $galeries = $galleryRepository->findBy([], ['priority' => 'DESC']);
 
+        //Opening Hour
+        $openingHour = $openingHourRepository->findAll();
+
         return $this->render('main/index.html.twig', [
             'currentMenu' => $currentMenu,
             'categories' => $categories,
             'reviews' => $reviews,
-            'galleries' => $galeries
+            'galleries' => $galeries,
+            'openingHours' => $openingHour,
+            'config' => $configurationRepository->findOneBy([])
         ]);
     }
 
