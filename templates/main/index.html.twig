@@ -323,7 +323,7 @@
             </section>
 
             {# o-restauraci #}
-            <section id="o-restauraci" class="py-24 bg-rich-green text-light-rose">
+            <section id="o-restauraci" class="py-20 bg-rich-green text-light-rose">
                 <div class="max-w-4xl mx-auto px-6 md:px-12">
 
                     {# 1. Titre de la section (Même style que Speciální Nabídka) #}
@@ -375,7 +375,65 @@
                 </div>
             </section>
 
-            <section id="recenze" class="bg-rich-green/90 h-full">recenze</section>
+            {# Recenze #}
+            <section id="recenze" class="py-20 bg-footer-dark text-light-rose overflow-hidden relative">
+                <div class="max-w-4xl mx-auto px-6 md:px-12">
+
+                    {# Titre de la section #}
+                    <div class="text-center mb-16">
+                        <h2 class="font-seasons text-4xl md:text-5xl uppercase tracking-[0.3em] mb-2">
+                            Recenze
+                        </h2>
+                        <div class="w-20 h-[1px] bg-light-rose mx-auto mt-6 opacity-30"></div>
+                    </div>
+
+                    {# Conteneur Swiper #}
+                    <div class="relative lg:px-20">
+                        <div class="swiper reviewSwiper">
+                            <div class="swiper-wrapper">
+                                {% for review in reviews %}
+                                    <div class="swiper-slide flex flex-col items-center text-center space-y-6 pb-12 md:pb-0">
+                                        <p class="font-seasons text-xl md:text-3xl italic leading-relaxed opacity-90 max-w-2xl mx-auto">
+                                            "{{ review.content }}"
+                                        </p>
+                                        <div class="flex flex-col items-center">
+                                            <span class="uppercase tracking-[0.3em] text-[10px] font-bold mb-2">{{ review.authorName }}</span>
+                                            <div class="flex gap-1 text-[10px] text-logo-rose">
+                                                {% for i in 1..(review.rating|default(5)) %}
+                                                    <span>★</span>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        {# --- NAVIGATION RESPONSIVE --- #}
+
+                        {# Conteneur des boutons : centrés sous le texte sur mobile, écartés sur desktop #}
+                        <div class="flex justify-center gap-12 mt-8 md:mt-0">
+
+                            {# Flèche GAUCHE #}
+                            <div class="swiper-button-prev !after:content-none !static md:!absolute !left-0 !top-1/2 md:!-translate-y-1/2 !w-8 md:!w-auto !h-auto cursor-pointer hover:opacity-70 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-auto max-h-[50px] md:max-h-[72px]" viewBox="0 0 34.583 72.142">
+                                    <path id="Path_94" d="M0,0,23.639,36.07,0,72.142,34.583,36.07Z" transform="translate(34.583 72.142) rotate(180)" fill="#dcb4a2"/>
+                                </svg>
+                            </div>
+
+                            {# Flèche DROITE #}
+                            <div class="swiper-button-next !after:content-none !static md:!absolute !right-0 !top-1/2 md:!-translate-y-1/2 !w-8 md:!w-auto !h-auto cursor-pointer hover:opacity-70 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-auto max-h-[50px] md:max-h-[72px]" viewBox="0 0 34.583 72.142">
+                                    <path id="Path_95" d="M0,0,23.639,36.07,0,72.142,34.583,36.07Z" transform="translate(0 0)" fill="#dcb4a2"/>
+                                </svg>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
             <section id="contact" class="bg-rich-green">heure d'ouverture et kontakt</section>
             <section id="map">affichage de map</section>
 

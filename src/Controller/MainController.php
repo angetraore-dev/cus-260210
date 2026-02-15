@@ -7,6 +7,7 @@ use App\Form\ReservationType;
 use App\Repository\CategoryRepository;
 use App\Repository\DailyMenuRepository;
 use App\Repository\DishRepository;
+use App\Repository\ReviewRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,7 +18,7 @@ final class MainController extends AbstractController
     public function index(
         DailyMenuRepository $dailyMenuRepository,
         CategoryRepository $categoryRepository,
-        DishRepository $dishRepository
+        ReviewRepository $reviewRepository
     ): Response
     {
         $today = new  \DateTime();
@@ -44,9 +45,13 @@ final class MainController extends AbstractController
             ->getResult()
         ;
 
+        //recenze
+        $reviews = $reviewRepository->findBy(['isAvaible' => true]);
+
         return $this->render('main/index.html.twig', [
             'currentMenu' => $currentMenu,
             'categories' => $categories,
+            'reviews' => $reviews,
         ]);
     }
 

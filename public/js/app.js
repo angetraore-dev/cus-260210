@@ -110,6 +110,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+
+    //pour recenze
+    const swiper = new Swiper('.reviewSwiper', {
+        loop: true,
+        speed: 800,
+        autoplay: {
+            delay: 5000,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+
+
 });
 
 /*

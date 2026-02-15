@@ -96,3 +96,17 @@ body {
     border-bottom: 1px dashed #ccc;
     background: transparent;
 }
+
+/* Supprime la flèche par défaut de Swiper (le caractère Unicode) */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none !important;
+    content: "" !important;
+}
+
+/* On s'assure que le bouton ne prend que la place du SVG */
+.swiper-button-next,
+.swiper-button-prev {
+    width: auto !important;
+    height: auto !important;
+}

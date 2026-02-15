@@ -8,6 +8,7 @@ use App\Entity\DailyMenu;
 use App\Entity\Dish;
 use App\Entity\OpeningHour;
 use App\Entity\Reservation;
+use App\Entity\Review;
 use App\Enum\ReservationStatus;
 use App\Repository\ReservationRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -25,7 +26,6 @@ class DashboardController extends AbstractDashboardController
     public function __construct(ReservationRepository $reservationRepository)
     {
         $this->reservationRepository = $reservationRepository;
-
     }
     #[Route('/admin', name: 'admin')]
     public function index(): Response
@@ -74,6 +74,7 @@ class DashboardController extends AbstractDashboardController
             'status' => ReservationStatus::PENDING
         ]);
 
+
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
         yield MenuItem::section('Restaurant Menu');
@@ -101,12 +102,19 @@ class DashboardController extends AbstractDashboardController
         yield $menuItem;
 
         yield MenuItem::linkToCrud('Opening Hours', 'fa fa-clock', OpeningHour::class)
-            ->setController(OpeningHourCrudController::class);
+            ->setController(OpeningHourCrudController::class)
+        ;
+
+        //recenze
+        yield MenuItem::linkToCrud('Recenze', 'fa fa-star', Review::class)
+            ->setController(ReviewCrudController::class)
+        ;
 
         //Settings
         yield MenuItem::section('Settings');
         yield MenuItem::linkToCrud('Global Config', 'fa fa-cog', Configuration::class)
-            ->setController(ConfigurationCrudController::class);
+            ->setController(ConfigurationCrudController::class)
+        ;
 
     }
 }
